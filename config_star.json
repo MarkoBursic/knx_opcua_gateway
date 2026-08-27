@@ -1,0 +1,21 @@
+{
+  "security": {
+    "allow_anonymous": true,
+    "require_encryption": false,
+    "users": [
+      { "username": "admin", "password": "VarnoGeslo2026!" }
+    ]
+  },
+  "datapoints": [
+    { "knx_address": "7/4/0", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.lucvklop" },
+    { "knx_address": "7/4/11", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.lucdeluje" },
+    { "knx_address": "7/4/12", "dpt": "5.001", "opc_path": "knx.nad1.pisarna1.lucprocent" },
+    { "knx_address": "7/4/13", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.errluc" },    
+    { "knx_address": "7/4/2", "dpt": "9.001", "opc_path": "knx.nad1.pisarna1.trentemp" },
+    { "knx_address": "7/4/3", "dpt": "9.001", "opc_path": "knx.nad1.pisarna1.nasttemp" },
+    { "knx_address": "7/4/4", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.prisotost" },
+    { "knx_address": "7/4/7", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.hgventil" },
+    { "knx_address": "7/4/8", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.hgopozkond" },
+    { "knx_address": "7/4/9", "dpt": "1.001", "opc_path": "knx.nad1.pisarna1.odpokno" }    
+  ]
+}
