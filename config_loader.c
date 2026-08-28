@@ -60,7 +60,7 @@ int load_config(const char *filename) {
         size_t array_len = json_object_array_length(datapoints_obj);
         
         // Omejitev polja na maksimalno definirano velikost v gateway.h
-        if (array_len > 500) array_len = 500; // Povečano za podporo celotni stavbi
+        if (array_len > 2000) array_len = 2000; // Povečano za podporo celotni stavbi
 
 
         for (size_t i = 0; i < array_len; i++) {

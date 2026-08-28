@@ -13,2717 +13,2717 @@
     {
       "knx_address": "3/0/0",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Recep.TrenTemp"
+      "opc_path": "Prit.Recep.TrenTemp"
     },
     {
       "knx_address": "3/0/1",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Recep.NastTemp"
+      "opc_path": "Prit.Recep.NastTemp"
     },
     {
       "knx_address": "3/0/2",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.HGVentil"
+      "opc_path": "Prit.Recep.HGVentil"
     },
     {
       "knx_address": "3/0/3",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.HGOpozKond"
+      "opc_path": "Prit.Recep.HGOpozKond"
     },
     {
       "knx_address": "3/0/4",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.Recep.HGRezDel"
+      "opc_path": "Prit.Recep.HGRezDel"
     },
     {
       "knx_address": "3/0/5",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucVetrolovVklop"
+      "opc_path": "Prit.Recep.LucVetrolovVklop"
     },
     {
       "knx_address": "3/0/6",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucGlVhodVklop"
+      "opc_path": "Prit.Recep.LucGlVhodVklop"
     },
     {
       "knx_address": "3/0/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucPomVhodVklop"
+      "opc_path": "Prit.Recep.LucPomVhodVklop"
     },
     {
       "knx_address": "3/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.SvetNapisVklop"
+      "opc_path": "Prit.Recep.SvetNapisVklop"
     },
     {
       "knx_address": "3/0/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucCelonocneVklop"
+      "opc_path": "Prit.Recep.LucCelonocneVklop"
     },
     {
       "knx_address": "3/0/10",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS2Vklop"
+      "opc_path": "Prit.Recep.LucS2Vklop"
     },
     {
       "knx_address": "3/0/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS3CVklop"
+      "opc_path": "Prit.Recep.LucS3CVklop"
     },
     {
       "knx_address": "3/0/12",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS5Vklop"
+      "opc_path": "Prit.Recep.LucS5Vklop"
     },
     {
       "knx_address": "3/0/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS2Deluje"
+      "opc_path": "Prit.Recep.LucS2Deluje"
     },
     {
       "knx_address": "3/0/14",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS3CDeluje"
+      "opc_path": "Prit.Recep.LucS3CDeluje"
     },
     {
       "knx_address": "3/0/15",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.LucS5Deluje"
+      "opc_path": "Prit.Recep.LucS5Deluje"
     },
     {
       "knx_address": "3/0/16",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.ErrLucS2"
+      "opc_path": "Prit.Recep.ErrLucS2"
     },
     {
       "knx_address": "3/0/17",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.ErrLucS3C"
+      "opc_path": "Prit.Recep.ErrLucS3C"
     },
     {
       "knx_address": "3/0/18",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Recep.ErrLucS5"
+      "opc_path": "Prit.Recep.ErrLucS5"
     },
     {
       "knx_address": "1/1/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.LucVklop"
+      "opc_path": "Prit.Avla.LucVklop"
     },
     {
       "knx_address": "1/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.LucDeluje"
+      "opc_path": "Prit.Avla.LucDeluje"
     },
     {
       "knx_address": "1/1/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.Avla.LucProcent"
+      "opc_path": "Prit.Avla.LucProcent"
     },
     {
       "knx_address": "1/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.ErrLuc"
+      "opc_path": "Prit.Avla.ErrLuc"
     },
     {
       "knx_address": "1/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Avla.TrenTemp"
+      "opc_path": "Prit.Avla.TrenTemp"
     },
     {
       "knx_address": "1/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Avla.NastTemp"
+      "opc_path": "Prit.Avla.NastTemp"
     },
     {
       "knx_address": "1/1/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.Prisotnost"
+      "opc_path": "Prit.Avla.Prisotnost"
     },
     {
       "knx_address": "1/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.HGVentil"
+      "opc_path": "Prit.Avla.HGVentil"
     },
     {
       "knx_address": "1/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Avla.HGOpozKond"
+      "opc_path": "Prit.Avla.HGOpozKond"
     },
     {
       "knx_address": "1/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.Avla.HGRezDel"
+      "opc_path": "Prit.Avla.HGRezDel"
     },
     {
       "knx_address": "1/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VeNaDvo.ErrLuc"
+      "opc_path": "Prit.VeNaDvo.ErrLuc"
     },
     {
       "knx_address": "1/0/9",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VeNaDvo.TrenTemp"
+      "opc_path": "Prit.VeNaDvo.TrenTemp"
     },
     {
       "knx_address": "1/0/10",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VeNaDvo.NastTemp"
+      "opc_path": "Prit.VeNaDvo.NastTemp"
     },
     {
       "knx_address": "1/0/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VeNaDvo.HGVentil"
+      "opc_path": "Prit.VeNaDvo.HGVentil"
     },
     {
       "knx_address": "1/0/12",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VeNaDvo.HGOpozKond"
+      "opc_path": "Prit.VeNaDvo.HGOpozKond"
     },
     {
       "knx_address": "1/0/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VeNaDvo.OdpOkno"
+      "opc_path": "Prit.VeNaDvo.OdpOkno"
     },
     {
       "knx_address": "1/0/14",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.VeNaDvo.HGRezDel"
+      "opc_path": "Prit.VeNaDvo.HGRezDel"
     },
     {
       "knx_address": "2/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PrShOpr.TrenTemp"
+      "opc_path": "Prit.PrShOpr.TrenTemp"
     },
     {
       "knx_address": "2/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PrShOpr.NastTemp"
+      "opc_path": "Prit.PrShOpr.NastTemp"
     },
     {
       "knx_address": "2/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PrShOpr.HGVentil"
+      "opc_path": "Prit.PrShOpr.HGVentil"
     },
     {
       "knx_address": "2/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PrShOpr.HGOpozKond"
+      "opc_path": "Prit.PrShOpr.HGOpozKond"
     },
     {
       "knx_address": "2/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.PrShOpr.HGRezDel"
+      "opc_path": "Prit.PrShOpr.HGRezDel"
     },
     {
       "knx_address": "2/0/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.CajKuh.TrenTemp"
+      "opc_path": "Prit.CajKuh.TrenTemp"
     },
     {
       "knx_address": "2/0/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.CajKuh.NastTemp"
+      "opc_path": "Prit.CajKuh.NastTemp"
     },
     {
       "knx_address": "2/0/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CajKuh.HGVentil"
+      "opc_path": "Prit.CajKuh.HGVentil"
     },
     {
       "knx_address": "2/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CajKuh.HGOpozKond"
+      "opc_path": "Prit.CajKuh.HGOpozKond"
     },
     {
       "knx_address": "2/0/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CajKuh.OdpOkno"
+      "opc_path": "Prit.CajKuh.OdpOkno"
     },
     {
       "knx_address": "2/0/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.CajKuh.HGRezDel"
+      "opc_path": "Prit.CajKuh.HGRezDel"
     },
     {
       "knx_address": "1/7/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PrShToUo.TrenTemp"
+      "opc_path": "Prit.PrShToUo.TrenTemp"
     },
     {
       "knx_address": "1/7/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PrShToUo.NastTemp"
+      "opc_path": "Prit.PrShToUo.NastTemp"
     },
     {
       "knx_address": "1/7/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PrShToUo.HGVentil"
+      "opc_path": "Prit.PrShToUo.HGVentil"
     },
     {
       "knx_address": "1/7/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PrShToUo.HGOpozKond"
+      "opc_path": "Prit.PrShToUo.HGOpozKond"
     },
     {
       "knx_address": "1/7/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PrShToUo.OdpOkno"
+      "opc_path": "Prit.PrShToUo.OdpOkno"
     },
     {
       "knx_address": "1/7/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.PrShToUo.HGRezDel"
+      "opc_path": "Prit.PrShToUo.HGRezDel"
     },
     {
       "knx_address": "1/6/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.LucVklop"
+      "opc_path": "Prit.Dokum.LucVklop"
     },
     {
       "knx_address": "1/6/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.LucDeluje"
+      "opc_path": "Prit.Dokum.LucDeluje"
     },
     {
       "knx_address": "1/6/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.Dokum.LucProcent"
+      "opc_path": "Prit.Dokum.LucProcent"
     },
     {
       "knx_address": "1/6/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.ErrLuc"
+      "opc_path": "Prit.Dokum.ErrLuc"
     },
     {
       "knx_address": "1/6/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Dokum.TrenTemp"
+      "opc_path": "Prit.Dokum.TrenTemp"
     },
     {
       "knx_address": "1/6/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Dokum.NastTemp"
+      "opc_path": "Prit.Dokum.NastTemp"
     },
     {
       "knx_address": "1/6/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.Prisotnost"
+      "opc_path": "Prit.Dokum.Prisotnost"
     },
     {
       "knx_address": "1/6/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.HGVentil"
+      "opc_path": "Prit.Dokum.HGVentil"
     },
     {
       "knx_address": "1/6/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.HGOpozKond"
+      "opc_path": "Prit.Dokum.HGOpozKond"
     },
     {
       "knx_address": "1/6/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Dokum.OdpOkno"
+      "opc_path": "Prit.Dokum.OdpOkno"
     },
     {
       "knx_address": "1/6/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.Dokum.HGRezDel"
+      "opc_path": "Prit.Dokum.HGRezDel"
     },
     {
       "knx_address": "1/5/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.LucVklop"
+      "opc_path": "Prit.RefTeh.LucVklop"
     },
     {
       "knx_address": "1/5/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.LucDeluje"
+      "opc_path": "Prit.RefTeh.LucDeluje"
     },
     {
       "knx_address": "1/5/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.RefTeh.LucProcent"
+      "opc_path": "Prit.RefTeh.LucProcent"
     },
     {
       "knx_address": "1/5/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.ErrLuc"
+      "opc_path": "Prit.RefTeh.ErrLuc"
     },
     {
       "knx_address": "1/5/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefTeh.TrenTemp"
+      "opc_path": "Prit.RefTeh.TrenTemp"
     },
     {
       "knx_address": "1/5/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefTeh.NastTemp"
+      "opc_path": "Prit.RefTeh.NastTemp"
     },
     {
       "knx_address": "1/5/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.Prisotnost"
+      "opc_path": "Prit.RefTeh.Prisotnost"
     },
     {
       "knx_address": "1/5/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.HGVentil"
+      "opc_path": "Prit.RefTeh.HGVentil"
     },
     {
       "knx_address": "1/5/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.HGOpozKond"
+      "opc_path": "Prit.RefTeh.HGOpozKond"
     },
     {
       "knx_address": "1/5/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefTeh.OdpOkno"
+      "opc_path": "Prit.RefTeh.OdpOkno"
     },
     {
       "knx_address": "1/5/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.RefTeh.HGRezDel"
+      "opc_path": "Prit.RefTeh.HGRezDel"
     },
     {
       "knx_address": "1/4/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.LucVklop"
+      "opc_path": "Prit.RefMer.LucVklop"
     },
     {
       "knx_address": "1/4/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.LucDeluje"
+      "opc_path": "Prit.RefMer.LucDeluje"
     },
     {
       "knx_address": "1/4/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.RefMer.LucProcent"
+      "opc_path": "Prit.RefMer.LucProcent"
     },
     {
       "knx_address": "1/4/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.ErrLuc"
+      "opc_path": "Prit.RefMer.ErrLuc"
     },
     {
       "knx_address": "1/4/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefMer.TrenTemp"
+      "opc_path": "Prit.RefMer.TrenTemp"
     },
     {
       "knx_address": "1/4/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefMer.NastTemp"
+      "opc_path": "Prit.RefMer.NastTemp"
     },
     {
       "knx_address": "1/4/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.Prisotnost"
+      "opc_path": "Prit.RefMer.Prisotnost"
     },
     {
       "knx_address": "1/4/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.HGVentil"
+      "opc_path": "Prit.RefMer.HGVentil"
     },
     {
       "knx_address": "1/4/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.HGOpozKond"
+      "opc_path": "Prit.RefMer.HGOpozKond"
     },
     {
       "knx_address": "1/4/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefMer.OdpOkno"
+      "opc_path": "Prit.RefMer.OdpOkno"
     },
     {
       "knx_address": "1/4/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.RefMer.HGRezDel"
+      "opc_path": "Prit.RefMer.HGRezDel"
     },
     {
       "knx_address": "1/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.LucVklop"
+      "opc_path": "Prit.RefInfRek.LucVklop"
     },
     {
       "knx_address": "1/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.LucDeluje"
+      "opc_path": "Prit.RefInfRek.LucDeluje"
     },
     {
       "knx_address": "1/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.RefInfRek.LucProcent"
+      "opc_path": "Prit.RefInfRek.LucProcent"
     },
     {
       "knx_address": "1/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.ErrLuc"
+      "opc_path": "Prit.RefInfRek.ErrLuc"
     },
     {
       "knx_address": "1/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefInfRek.TrenTemp"
+      "opc_path": "Prit.RefInfRek.TrenTemp"
     },
     {
       "knx_address": "1/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefInfRek.NastTemp"
+      "opc_path": "Prit.RefInfRek.NastTemp"
     },
     {
       "knx_address": "1/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.Prisotnost"
+      "opc_path": "Prit.RefInfRek.Prisotnost"
     },
     {
       "knx_address": "1/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.HGVentil"
+      "opc_path": "Prit.RefInfRek.HGVentil"
     },
     {
       "knx_address": "1/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.HGOpozKond"
+      "opc_path": "Prit.RefInfRek.HGOpozKond"
     },
     {
       "knx_address": "1/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefInfRek.OdpOkno"
+      "opc_path": "Prit.RefInfRek.OdpOkno"
     },
     {
       "knx_address": "1/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.RefInfRek.HGRezDel"
+      "opc_path": "Prit.RefInfRek.HGRezDel"
     },
     {
       "knx_address": "3/1/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.LucVklop"
+      "opc_path": "Prit.Govor.LucVklop"
     },
     {
       "knx_address": "3/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.LucDeluje"
+      "opc_path": "Prit.Govor.LucDeluje"
     },
     {
       "knx_address": "3/1/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.Govor.LucProcent"
+      "opc_path": "Prit.Govor.LucProcent"
     },
     {
       "knx_address": "3/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.ErrLuc"
+      "opc_path": "Prit.Govor.ErrLuc"
     },
     {
       "knx_address": "3/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Govor.TrenTemp"
+      "opc_path": "Prit.Govor.TrenTemp"
     },
     {
       "knx_address": "3/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.Govor.NastTemp"
+      "opc_path": "Prit.Govor.NastTemp"
     },
     {
       "knx_address": "3/1/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.Prisotnost"
+      "opc_path": "Prit.Govor.Prisotnost"
     },
     {
       "knx_address": "3/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.HGVentil"
+      "opc_path": "Prit.Govor.HGVentil"
     },
     {
       "knx_address": "3/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.HGOpozKond"
+      "opc_path": "Prit.Govor.HGOpozKond"
     },
     {
       "knx_address": "3/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.Govor.OdpOkno"
+      "opc_path": "Prit.Govor.OdpOkno"
     },
     {
       "knx_address": "3/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.Govor.HGRezDel"
+      "opc_path": "Prit.Govor.HGRezDel"
     },
     {
       "knx_address": "3/2/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.LucVklop"
+      "opc_path": "Prit.PogSog.LucVklop"
     },
     {
       "knx_address": "3/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.LucDeluje"
+      "opc_path": "Prit.PogSog.LucDeluje"
     },
     {
       "knx_address": "3/2/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.PogSog.LucProcent"
+      "opc_path": "Prit.PogSog.LucProcent"
     },
     {
       "knx_address": "3/2/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.ErrLuc"
+      "opc_path": "Prit.PogSog.ErrLuc"
     },
     {
       "knx_address": "3/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PogSog.TrenTemp"
+      "opc_path": "Prit.PogSog.TrenTemp"
     },
     {
       "knx_address": "3/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.PogSog.NastTemp"
+      "opc_path": "Prit.PogSog.NastTemp"
     },
     {
       "knx_address": "3/2/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.Prisotnost"
+      "opc_path": "Prit.PogSog.Prisotnost"
     },
     {
       "knx_address": "3/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.HGVentil"
+      "opc_path": "Prit.PogSog.HGVentil"
     },
     {
       "knx_address": "3/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.HGOpozKond"
+      "opc_path": "Prit.PogSog.HGOpozKond"
     },
     {
       "knx_address": "3/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.PogSog.OdpOkno"
+      "opc_path": "Prit.PogSog.OdpOkno"
     },
     {
       "knx_address": "3/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.PogSog.HGRezDel"
+      "opc_path": "Prit.PogSog.HGRezDel"
     },
     {
       "knx_address": "3/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.LucVklop"
+      "opc_path": "Prit.VodTraVzd.LucVklop"
     },
     {
       "knx_address": "3/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.LucDeluje"
+      "opc_path": "Prit.VodTraVzd.LucDeluje"
     },
     {
       "knx_address": "3/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.VodTraVzd.LucProcent"
+      "opc_path": "Prit.VodTraVzd.LucProcent"
     },
     {
       "knx_address": "3/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.ErrLuc"
+      "opc_path": "Prit.VodTraVzd.ErrLuc"
     },
     {
       "knx_address": "3/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VodTraVzd.TrenTemp"
+      "opc_path": "Prit.VodTraVzd.TrenTemp"
     },
     {
       "knx_address": "3/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VodTraVzd.NastTemp"
+      "opc_path": "Prit.VodTraVzd.NastTemp"
     },
     {
       "knx_address": "3/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.Prisotnost"
+      "opc_path": "Prit.VodTraVzd.Prisotnost"
     },
     {
       "knx_address": "3/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.HGVentil"
+      "opc_path": "Prit.VodTraVzd.HGVentil"
     },
     {
       "knx_address": "3/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.HGOpozKond"
+      "opc_path": "Prit.VodTraVzd.HGOpozKond"
     },
     {
       "knx_address": "3/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodTraVzd.OdpOkno"
+      "opc_path": "Prit.VodTraVzd.OdpOkno"
     },
     {
       "knx_address": "3/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.VodTraVzd.HGRezDel"
+      "opc_path": "Prit.VodTraVzd.HGRezDel"
     },
     {
       "knx_address": "3/4/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.LucVklop"
+      "opc_path": "Prit.RefUo.LucVklop"
     },
     {
       "knx_address": "3/4/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.LucDeluje"
+      "opc_path": "Prit.RefUo.LucDeluje"
     },
     {
       "knx_address": "3/4/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.RefUo.LucProcent"
+      "opc_path": "Prit.RefUo.LucProcent"
     },
     {
       "knx_address": "3/4/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.ErrLuc"
+      "opc_path": "Prit.RefUo.ErrLuc"
     },
     {
       "knx_address": "3/4/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefUo.TrenTemp"
+      "opc_path": "Prit.RefUo.TrenTemp"
     },
     {
       "knx_address": "3/4/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.RefUo.NastTemp"
+      "opc_path": "Prit.RefUo.NastTemp"
     },
     {
       "knx_address": "3/4/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.Prisotnost"
+      "opc_path": "Prit.RefUo.Prisotnost"
     },
     {
       "knx_address": "3/4/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.HGVentil"
+      "opc_path": "Prit.RefUo.HGVentil"
     },
     {
       "knx_address": "3/4/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.HGOpozKond"
+      "opc_path": "Prit.RefUo.HGOpozKond"
     },
     {
       "knx_address": "3/4/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.RefUo.OdpOkno"
+      "opc_path": "Prit.RefUo.OdpOkno"
     },
     {
       "knx_address": "3/4/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.RefUo.HGRezDel"
+      "opc_path": "Prit.RefUo.HGRezDel"
     },
     {
       "knx_address": "3/5/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.LucVklop"
+      "opc_path": "Prit.MontUo.LucVklop"
     },
     {
       "knx_address": "3/5/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.LucDeluje"
+      "opc_path": "Prit.MontUo.LucDeluje"
     },
     {
       "knx_address": "3/5/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.MontUo.LucProcent"
+      "opc_path": "Prit.MontUo.LucProcent"
     },
     {
       "knx_address": "3/5/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.ErrLuc"
+      "opc_path": "Prit.MontUo.ErrLuc"
     },
     {
       "knx_address": "3/5/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.MontUo.TrenTemp"
+      "opc_path": "Prit.MontUo.TrenTemp"
     },
     {
       "knx_address": "3/5/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.MontUo.NastTemp"
+      "opc_path": "Prit.MontUo.NastTemp"
     },
     {
       "knx_address": "3/5/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.Prisotnost"
+      "opc_path": "Prit.MontUo.Prisotnost"
     },
     {
       "knx_address": "3/5/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.HGVentil"
+      "opc_path": "Prit.MontUo.HGVentil"
     },
     {
       "knx_address": "3/5/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.HGOpozKond"
+      "opc_path": "Prit.MontUo.HGOpozKond"
     },
     {
       "knx_address": "3/5/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.MontUo.OdpOkno"
+      "opc_path": "Prit.MontUo.OdpOkno"
     },
     {
       "knx_address": "3/5/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.MontUo.HGRezDel"
+      "opc_path": "Prit.MontUo.HGRezDel"
     },
     {
       "knx_address": "3/6/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.LucVklop"
+      "opc_path": "Prit.KontTo.LucVklop"
     },
     {
       "knx_address": "3/6/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.LucDeluje"
+      "opc_path": "Prit.KontTo.LucDeluje"
     },
     {
       "knx_address": "3/6/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.KontTo.LucProcent"
+      "opc_path": "Prit.KontTo.LucProcent"
     },
     {
       "knx_address": "3/6/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.ErrLuc"
+      "opc_path": "Prit.KontTo.ErrLuc"
     },
     {
       "knx_address": "3/6/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.KontTo.TrenTemp"
+      "opc_path": "Prit.KontTo.TrenTemp"
     },
     {
       "knx_address": "3/6/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.KontTo.NastTemp"
+      "opc_path": "Prit.KontTo.NastTemp"
     },
     {
       "knx_address": "3/6/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.Prisotnost"
+      "opc_path": "Prit.KontTo.Prisotnost"
     },
     {
       "knx_address": "3/6/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.HGVentil"
+      "opc_path": "Prit.KontTo.HGVentil"
     },
     {
       "knx_address": "3/6/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.HGOpozKond"
+      "opc_path": "Prit.KontTo.HGOpozKond"
     },
     {
       "knx_address": "3/6/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.KontTo.OdpOkno"
+      "opc_path": "Prit.KontTo.OdpOkno"
     },
     {
       "knx_address": "3/6/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.KontTo.HGRezDel"
+      "opc_path": "Prit.KontTo.HGRezDel"
     },
     {
       "knx_address": "3/7/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.LucVklop"
+      "opc_path": "Prit.CentVod.LucVklop"
     },
     {
       "knx_address": "3/7/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.LucDeluje"
+      "opc_path": "Prit.CentVod.LucDeluje"
     },
     {
       "knx_address": "3/7/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.CentVod.LucProcent"
+      "opc_path": "Prit.CentVod.LucProcent"
     },
     {
       "knx_address": "3/7/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.ErrLuc"
+      "opc_path": "Prit.CentVod.ErrLuc"
     },
     {
       "knx_address": "3/7/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.CentVod.TrenTemp"
+      "opc_path": "Prit.CentVod.TrenTemp"
     },
     {
       "knx_address": "3/7/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.CentVod.NastTemp"
+      "opc_path": "Prit.CentVod.NastTemp"
     },
     {
       "knx_address": "3/7/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.Prisotnost"
+      "opc_path": "Prit.CentVod.Prisotnost"
     },
     {
       "knx_address": "3/7/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.HGVentil"
+      "opc_path": "Prit.CentVod.HGVentil"
     },
     {
       "knx_address": "3/7/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.HGOpozKond"
+      "opc_path": "Prit.CentVod.HGOpozKond"
     },
     {
       "knx_address": "3/7/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.CentVod.OdpOkno"
+      "opc_path": "Prit.CentVod.OdpOkno"
     },
     {
       "knx_address": "3/7/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.CentVod.HGRezDel"
+      "opc_path": "Prit.CentVod.HGRezDel"
     },
     {
       "knx_address": "4/0/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.LucVklop"
+      "opc_path": "Prit.VodUoTo.LucVklop"
     },
     {
       "knx_address": "4/0/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.LucDeluje"
+      "opc_path": "Prit.VodUoTo.LucDeluje"
     },
     {
       "knx_address": "4/0/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.VodUoTo.LucProcent"
+      "opc_path": "Prit.VodUoTo.LucProcent"
     },
     {
       "knx_address": "4/0/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.ErrLuc"
+      "opc_path": "Prit.VodUoTo.ErrLuc"
     },
     {
       "knx_address": "4/0/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VodUoTo.TrenTemp"
+      "opc_path": "Prit.VodUoTo.TrenTemp"
     },
     {
       "knx_address": "4/0/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.VodUoTo.NastTemp"
+      "opc_path": "Prit.VodUoTo.NastTemp"
     },
     {
       "knx_address": "4/0/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.Prisotnost"
+      "opc_path": "Prit.VodUoTo.Prisotnost"
     },
     {
       "knx_address": "4/0/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.HGVentil"
+      "opc_path": "Prit.VodUoTo.HGVentil"
     },
     {
       "knx_address": "4/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.HGOpozKond"
+      "opc_path": "Prit.VodUoTo.HGOpozKond"
     },
     {
       "knx_address": "4/0/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.VodUoTo.OdpOkno"
+      "opc_path": "Prit.VodUoTo.OdpOkno"
     },
     {
       "knx_address": "4/0/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.VodUoTo.HGRezDel"
+      "opc_path": "Prit.VodUoTo.HGRezDel"
     },
     {
       "knx_address": "4/1/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.LucVklop"
+      "opc_path": "Prit.ObrTo1.LucVklop"
     },
     {
       "knx_address": "4/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.LucDeluje"
+      "opc_path": "Prit.ObrTo1.LucDeluje"
     },
     {
       "knx_address": "4/1/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.ObrTo1.LucProcent"
+      "opc_path": "Prit.ObrTo1.LucProcent"
     },
     {
       "knx_address": "4/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.ErrLuc"
+      "opc_path": "Prit.ObrTo1.ErrLuc"
     },
     {
       "knx_address": "4/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo1.TrenTemp"
+      "opc_path": "Prit.ObrTo1.TrenTemp"
     },
     {
       "knx_address": "4/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo1.NastTemp"
+      "opc_path": "Prit.ObrTo1.NastTemp"
     },
     {
       "knx_address": "4/1/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.Prisotnost"
+      "opc_path": "Prit.ObrTo1.Prisotnost"
     },
     {
       "knx_address": "4/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.HGVentil"
+      "opc_path": "Prit.ObrTo1.HGVentil"
     },
     {
       "knx_address": "4/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.HGOpozKond"
+      "opc_path": "Prit.ObrTo1.HGOpozKond"
     },
     {
       "knx_address": "4/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo1.OdpOkno"
+      "opc_path": "Prit.ObrTo1.OdpOkno"
     },
     {
       "knx_address": "4/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.ObrTo1.HGRezDel"
+      "opc_path": "Prit.ObrTo1.HGRezDel"
     },
     {
       "knx_address": "4/2/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.LucVklop"
+      "opc_path": "Prit.ObrTo2.LucVklop"
     },
     {
       "knx_address": "4/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.LucDeluje"
+      "opc_path": "Prit.ObrTo2.LucDeluje"
     },
     {
       "knx_address": "4/2/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.ObrTo2.LucProcent"
+      "opc_path": "Prit.ObrTo2.LucProcent"
     },
     {
       "knx_address": "4/2/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.ErrLuc"
+      "opc_path": "Prit.ObrTo2.ErrLuc"
     },
     {
       "knx_address": "4/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo2.TrenTemp"
+      "opc_path": "Prit.ObrTo2.TrenTemp"
     },
     {
       "knx_address": "4/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo2.NastTemp"
+      "opc_path": "Prit.ObrTo2.NastTemp"
     },
     {
       "knx_address": "4/2/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.Prisotnost"
+      "opc_path": "Prit.ObrTo2.Prisotnost"
     },
     {
       "knx_address": "4/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.HGVentil"
+      "opc_path": "Prit.ObrTo2.HGVentil"
     },
     {
       "knx_address": "4/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.HGOpozKond"
+      "opc_path": "Prit.ObrTo2.HGOpozKond"
     },
     {
       "knx_address": "4/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo2.OdpOkno"
+      "opc_path": "Prit.ObrTo2.OdpOkno"
     },
     {
       "knx_address": "4/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.ObrTo2.HGRezDel"
+      "opc_path": "Prit.ObrTo2.HGRezDel"
     },
     {
       "knx_address": "4/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.LucVklop"
+      "opc_path": "Prit.ObrTo3.LucVklop"
     },
     {
       "knx_address": "4/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.LucDeluje"
+      "opc_path": "Prit.ObrTo3.LucDeluje"
     },
     {
       "knx_address": "4/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.ObrTo3.LucProcent"
+      "opc_path": "Prit.ObrTo3.LucProcent"
     },
     {
       "knx_address": "4/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.ErrLuc"
+      "opc_path": "Prit.ObrTo3.ErrLuc"
     },
     {
       "knx_address": "4/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo3.TrenTemp"
+      "opc_path": "Prit.ObrTo3.TrenTemp"
     },
     {
       "knx_address": "4/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Prit.ObrTo3.NastTemp"
+      "opc_path": "Prit.ObrTo3.NastTemp"
     },
     {
       "knx_address": "4/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.Prisotnost"
+      "opc_path": "Prit.ObrTo3.Prisotnost"
     },
     {
       "knx_address": "4/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.HGVentil"
+      "opc_path": "Prit.ObrTo3.HGVentil"
     },
     {
       "knx_address": "4/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.HGOpozKond"
+      "opc_path": "Prit.ObrTo3.HGOpozKond"
     },
     {
       "knx_address": "4/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.ObrTo3.OdpOkno"
+      "opc_path": "Prit.ObrTo3.OdpOkno"
     },
     {
       "knx_address": "4/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Prit.ObrTo3.HGRezDel"
+      "opc_path": "Prit.ObrTo3.HGRezDel"
     },
     {
       "knx_address": "1/2/0",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.StopAvla.LucVklop"
+      "opc_path": "Prit.StopAvla.LucVklop"
     },
     {
       "knx_address": "1/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.StopAvla.LucDeluje"
+      "opc_path": "Prit.StopAvla.LucDeluje"
     },
     {
       "knx_address": "1/2/12",
       "dpt": "5.001",
-      "opc_path": "knx.Prit.StopAvla.LucProcent"
+      "opc_path": "Prit.StopAvla.LucProcent"
     },
     {
       "knx_address": "1/2/13",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.StopAvla.ErrLuc"
+      "opc_path": "Prit.StopAvla.ErrLuc"
     },
     {
       "knx_address": "1/2/4",
       "dpt": "1.001",
-      "opc_path": "knx.Prit.StopAvla.Prisotnost"
+      "opc_path": "Prit.StopAvla.Prisotnost"
     },
     {
       "knx_address": "7/0/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.CajKuh.TrenTemp"
+      "opc_path": "Nad1.CajKuh.TrenTemp"
     },
     {
       "knx_address": "7/0/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.CajKuh.NastTemp"
+      "opc_path": "Nad1.CajKuh.NastTemp"
     },
     {
       "knx_address": "7/0/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.CajKuh.HGVentil"
+      "opc_path": "Nad1.CajKuh.HGVentil"
     },
     {
       "knx_address": "7/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.CajKuh.HGOpozKond"
+      "opc_path": "Nad1.CajKuh.HGOpozKond"
     },
     {
       "knx_address": "7/0/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.CajKuh.OdpOkno"
+      "opc_path": "Nad1.CajKuh.OdpOkno"
     },
     {
       "knx_address": "7/0/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.CajKuh.HGRezDel"
+      "opc_path": "Nad1.CajKuh.HGRezDel"
     },
     {
       "knx_address": "5/2/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.LucVklop"
+      "opc_path": "Nad1.Tajnistvo.LucVklop"
     },
     {
       "knx_address": "5/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.LucDeluje"
+      "opc_path": "Nad1.Tajnistvo.LucDeluje"
     },
     {
       "knx_address": "5/2/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Tajnistvo.LucProcent"
+      "opc_path": "Nad1.Tajnistvo.LucProcent"
     },
     {
       "knx_address": "5/2/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.ErrLuc"
+      "opc_path": "Nad1.Tajnistvo.ErrLuc"
     },
     {
       "knx_address": "5/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Tajnistvo.TrenTemp"
+      "opc_path": "Nad1.Tajnistvo.TrenTemp"
     },
     {
       "knx_address": "5/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Tajnistvo.NastTemp"
+      "opc_path": "Nad1.Tajnistvo.NastTemp"
     },
     {
       "knx_address": "5/2/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.Prisotnost"
+      "opc_path": "Nad1.Tajnistvo.Prisotnost"
     },
     {
       "knx_address": "5/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.HGVentil"
+      "opc_path": "Nad1.Tajnistvo.HGVentil"
     },
     {
       "knx_address": "5/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.HGOpozKond"
+      "opc_path": "Nad1.Tajnistvo.HGOpozKond"
     },
     {
       "knx_address": "5/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Tajnistvo.OdpOkno"
+      "opc_path": "Nad1.Tajnistvo.OdpOkno"
     },
     {
       "knx_address": "5/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Tajnistvo.HGRezDel"
+      "opc_path": "Nad1.Tajnistvo.HGRezDel"
     },
     {
       "knx_address": "5/1/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.LucVklop"
+      "opc_path": "Nad1.DirektorDE.LucVklop"
     },
     {
       "knx_address": "5/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.LucDeluje"
+      "opc_path": "Nad1.DirektorDE.LucDeluje"
     },
     {
       "knx_address": "5/1/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.DirektorDE.LucProcent"
+      "opc_path": "Nad1.DirektorDE.LucProcent"
     },
     {
       "knx_address": "5/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.ErrLuc"
+      "opc_path": "Nad1.DirektorDE.ErrLuc"
     },
     {
       "knx_address": "5/1/14",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.LucMizaDeluje"
+      "opc_path": "Nad1.DirektorDE.LucMizaDeluje"
     },
     {
       "knx_address": "5/1/15",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.ErrLucMiza"
+      "opc_path": "Nad1.DirektorDE.ErrLucMiza"
     },
     {
       "knx_address": "5/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.DirektorDE.TrenTemp"
+      "opc_path": "Nad1.DirektorDE.TrenTemp"
     },
     {
       "knx_address": "5/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.DirektorDE.NastTemp"
+      "opc_path": "Nad1.DirektorDE.NastTemp"
     },
     {
       "knx_address": "5/1/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.Prisotnost"
+      "opc_path": "Nad1.DirektorDE.Prisotnost"
     },
     {
       "knx_address": "5/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.HGVentil"
+      "opc_path": "Nad1.DirektorDE.HGVentil"
     },
     {
       "knx_address": "5/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.HGOpozKond"
+      "opc_path": "Nad1.DirektorDE.HGOpozKond"
     },
     {
       "knx_address": "5/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.DirektorDE.OdpOkno"
+      "opc_path": "Nad1.DirektorDE.OdpOkno"
     },
     {
       "knx_address": "5/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.DirektorDE.HGRezDel"
+      "opc_path": "Nad1.DirektorDE.HGRezDel"
     },
     {
       "knx_address": "5/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.LucMizaVklop"
+      "opc_path": "Nad1.SejnaSoba.LucMizaVklop"
     },
     {
       "knx_address": "5/0/12",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.LucMizaDeluje"
+      "opc_path": "Nad1.SejnaSoba.LucMizaDeluje"
     },
     {
       "knx_address": "5/0/9",
       "dpt": "3.007",
-      "opc_path": "knx.Nad1.SejnaSoba.LucMizaDim"
+      "opc_path": "Nad1.SejnaSoba.LucMizaDim"
     },
     {
       "knx_address": "5/0/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.ErrLucMiza"
+      "opc_path": "Nad1.SejnaSoba.ErrLucMiza"
     },
     {
       "knx_address": "5/0/10",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.LucSobaVklop"
+      "opc_path": "Nad1.SejnaSoba.LucSobaVklop"
     },
     {
       "knx_address": "5/0/14",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.LucSobaDeluje"
+      "opc_path": "Nad1.SejnaSoba.LucSobaDeluje"
     },
     {
       "knx_address": "5/0/11",
       "dpt": "3.007",
-      "opc_path": "knx.Nad1.SejnaSoba.LucSobaDim"
+      "opc_path": "Nad1.SejnaSoba.LucSobaDim"
     },
     {
       "knx_address": "5/0/15",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.ErrLucSoba"
+      "opc_path": "Nad1.SejnaSoba.ErrLucSoba"
     },
     {
       "knx_address": "5/0/0",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.SejnaSoba.TrenTemp"
+      "opc_path": "Nad1.SejnaSoba.TrenTemp"
     },
     {
       "knx_address": "5/0/1",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.SejnaSoba.NastTemp"
+      "opc_path": "Nad1.SejnaSoba.NastTemp"
     },
     {
       "knx_address": "5/0/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.HGVentil"
+      "opc_path": "Nad1.SejnaSoba.HGVentil"
     },
     {
       "knx_address": "5/0/5",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.HGOpozKond"
+      "opc_path": "Nad1.SejnaSoba.HGOpozKond"
     },
     {
       "knx_address": "5/0/6",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.SejnaSoba.OdpOkno"
+      "opc_path": "Nad1.SejnaSoba.OdpOkno"
     },
     {
       "knx_address": "5/0/7",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.SejnaSoba.HGRezDel"
+      "opc_path": "Nad1.SejnaSoba.HGRezDel"
     },
     {
       "knx_address": "5/4/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.LucVklop"
+      "opc_path": "Nad1.VodjaFES.LucVklop"
     },
     {
       "knx_address": "5/4/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.LucDeluje"
+      "opc_path": "Nad1.VodjaFES.LucDeluje"
     },
     {
       "knx_address": "5/4/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.VodjaFES.LucProcent"
+      "opc_path": "Nad1.VodjaFES.LucProcent"
     },
     {
       "knx_address": "5/4/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.ErrLuc"
+      "opc_path": "Nad1.VodjaFES.ErrLuc"
     },
     {
       "knx_address": "5/4/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodjaFES.TrenTemp"
+      "opc_path": "Nad1.VodjaFES.TrenTemp"
     },
     {
       "knx_address": "5/4/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodjaFES.NastTemp"
+      "opc_path": "Nad1.VodjaFES.NastTemp"
     },
     {
       "knx_address": "5/4/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.Prisotnost"
+      "opc_path": "Nad1.VodjaFES.Prisotnost"
     },
     {
       "knx_address": "5/4/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.HGVentil"
+      "opc_path": "Nad1.VodjaFES.HGVentil"
     },
     {
       "knx_address": "5/4/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.HGOpozKond"
+      "opc_path": "Nad1.VodjaFES.HGOpozKond"
     },
     {
       "knx_address": "5/4/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodjaFES.OdpOkno"
+      "opc_path": "Nad1.VodjaFES.OdpOkno"
     },
     {
       "knx_address": "5/4/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.VodjaFES.HGRezDel"
+      "opc_path": "Nad1.VodjaFES.HGRezDel"
     },
     {
       "knx_address": "5/5/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.LucVklop"
+      "opc_path": "Nad1.OsSrPlace.LucVklop"
     },
     {
       "knx_address": "5/5/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.LucDeluje"
+      "opc_path": "Nad1.OsSrPlace.LucDeluje"
     },
     {
       "knx_address": "5/5/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.OsSrPlace.LucProcent"
+      "opc_path": "Nad1.OsSrPlace.LucProcent"
     },
     {
       "knx_address": "5/5/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.ErrLuc"
+      "opc_path": "Nad1.OsSrPlace.ErrLuc"
     },
     {
       "knx_address": "5/5/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.OsSrPlace.TrenTemp"
+      "opc_path": "Nad1.OsSrPlace.TrenTemp"
     },
     {
       "knx_address": "5/5/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.OsSrPlace.NastTemp"
+      "opc_path": "Nad1.OsSrPlace.NastTemp"
     },
     {
       "knx_address": "5/5/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.Prisotnost"
+      "opc_path": "Nad1.OsSrPlace.Prisotnost"
     },
     {
       "knx_address": "5/5/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.HGVentil"
+      "opc_path": "Nad1.OsSrPlace.HGVentil"
     },
     {
       "knx_address": "5/5/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.HGOpozKond"
+      "opc_path": "Nad1.OsSrPlace.HGOpozKond"
     },
     {
       "knx_address": "5/5/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.OsSrPlace.OdpOkno"
+      "opc_path": "Nad1.OsSrPlace.OdpOkno"
     },
     {
       "knx_address": "5/5/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.OsSrPlace.HGRezDel"
+      "opc_path": "Nad1.OsSrPlace.HGRezDel"
     },
     {
       "knx_address": "5/6/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.LucVklop"
+      "opc_path": "Nad1.KnjigLikv.LucVklop"
     },
     {
       "knx_address": "5/6/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.LucDeluje"
+      "opc_path": "Nad1.KnjigLikv.LucDeluje"
     },
     {
       "knx_address": "5/6/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.KnjigLikv.LucProcent"
+      "opc_path": "Nad1.KnjigLikv.LucProcent"
     },
     {
       "knx_address": "5/6/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.ErrLuc"
+      "opc_path": "Nad1.KnjigLikv.ErrLuc"
     },
     {
       "knx_address": "5/6/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.KnjigLikv.TrenTemp"
+      "opc_path": "Nad1.KnjigLikv.TrenTemp"
     },
     {
       "knx_address": "5/6/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.KnjigLikv.NastTemp"
+      "opc_path": "Nad1.KnjigLikv.NastTemp"
     },
     {
       "knx_address": "5/6/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.Prisotnost"
+      "opc_path": "Nad1.KnjigLikv.Prisotnost"
     },
     {
       "knx_address": "5/6/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.HGVentil"
+      "opc_path": "Nad1.KnjigLikv.HGVentil"
     },
     {
       "knx_address": "5/6/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.HGOpozKond"
+      "opc_path": "Nad1.KnjigLikv.HGOpozKond"
     },
     {
       "knx_address": "5/6/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.KnjigLikv.OdpOkno"
+      "opc_path": "Nad1.KnjigLikv.OdpOkno"
     },
     {
       "knx_address": "5/6/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.KnjigLikv.HGRezDel"
+      "opc_path": "Nad1.KnjigLikv.HGRezDel"
     },
     {
       "knx_address": "5/7/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.LucVklop"
+      "opc_path": "Nad1.Saldokonti.LucVklop"
     },
     {
       "knx_address": "5/7/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.LucDeluje"
+      "opc_path": "Nad1.Saldokonti.LucDeluje"
     },
     {
       "knx_address": "5/7/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Saldokonti.LucProcent"
+      "opc_path": "Nad1.Saldokonti.LucProcent"
     },
     {
       "knx_address": "5/7/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.ErrLuc"
+      "opc_path": "Nad1.Saldokonti.ErrLuc"
     },
     {
       "knx_address": "5/7/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Saldokonti.TrenTemp"
+      "opc_path": "Nad1.Saldokonti.TrenTemp"
     },
     {
       "knx_address": "5/7/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Saldokonti.NastTemp"
+      "opc_path": "Nad1.Saldokonti.NastTemp"
     },
     {
       "knx_address": "5/7/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.Prisotnost"
+      "opc_path": "Nad1.Saldokonti.Prisotnost"
     },
     {
       "knx_address": "5/7/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.HGVentil"
+      "opc_path": "Nad1.Saldokonti.HGVentil"
     },
     {
       "knx_address": "5/7/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.HGOpozKond"
+      "opc_path": "Nad1.Saldokonti.HGOpozKond"
     },
     {
       "knx_address": "5/7/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokonti.OdpOkno"
+      "opc_path": "Nad1.Saldokonti.OdpOkno"
     },
     {
       "knx_address": "5/7/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Saldokonti.HGRezDel"
+      "opc_path": "Nad1.Saldokonti.HGRezDel"
     },
     {
       "knx_address": "6/0/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.LucVklop"
+      "opc_path": "Nad1.Saldokontist.LucVklop"
     },
     {
       "knx_address": "6/0/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.LucDeluje"
+      "opc_path": "Nad1.Saldokontist.LucDeluje"
     },
     {
       "knx_address": "6/0/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Saldokontist.LucProcent"
+      "opc_path": "Nad1.Saldokontist.LucProcent"
     },
     {
       "knx_address": "6/0/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.ErrLuc"
+      "opc_path": "Nad1.Saldokontist.ErrLuc"
     },
     {
       "knx_address": "6/0/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Saldokontist.TrenTemp"
+      "opc_path": "Nad1.Saldokontist.TrenTemp"
     },
     {
       "knx_address": "6/0/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Saldokontist.NastTemp"
+      "opc_path": "Nad1.Saldokontist.NastTemp"
     },
     {
       "knx_address": "6/0/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.Prisotnost"
+      "opc_path": "Nad1.Saldokontist.Prisotnost"
     },
     {
       "knx_address": "6/0/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.HGVentil"
+      "opc_path": "Nad1.Saldokontist.HGVentil"
     },
     {
       "knx_address": "6/0/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.HGOpozKond"
+      "opc_path": "Nad1.Saldokontist.HGOpozKond"
     },
     {
       "knx_address": "6/0/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Saldokontist.OdpOkno"
+      "opc_path": "Nad1.Saldokontist.OdpOkno"
     },
     {
       "knx_address": "6/0/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Saldokontist.HGRezDel"
+      "opc_path": "Nad1.Saldokontist.HGRezDel"
     },
     {
       "knx_address": "6/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrArhFES.TrenTemp"
+      "opc_path": "Nad1.PrArhFES.TrenTemp"
     },
     {
       "knx_address": "6/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrArhFES.NastTemp"
+      "opc_path": "Nad1.PrArhFES.NastTemp"
     },
     {
       "knx_address": "6/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrArhFES.HGVentil"
+      "opc_path": "Nad1.PrArhFES.HGVentil"
     },
     {
       "knx_address": "6/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrArhFES.HGOpozKond"
+      "opc_path": "Nad1.PrArhFES.HGOpozKond"
     },
     {
       "knx_address": "6/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrArhFES.OdpOkno"
+      "opc_path": "Nad1.PrArhFES.OdpOkno"
     },
     {
       "knx_address": "6/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.PrArhFES.HGRezDel"
+      "opc_path": "Nad1.PrArhFES.HGRezDel"
     },
     {
       "knx_address": "6/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrShrProj.TrenTemp"
+      "opc_path": "Nad1.PrShrProj.TrenTemp"
     },
     {
       "knx_address": "6/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrShrProj.NastTemp"
+      "opc_path": "Nad1.PrShrProj.NastTemp"
     },
     {
       "knx_address": "6/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShrProj.HGVentil"
+      "opc_path": "Nad1.PrShrProj.HGVentil"
     },
     {
       "knx_address": "6/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShrProj.HGOpozKond"
+      "opc_path": "Nad1.PrShrProj.HGOpozKond"
     },
     {
       "knx_address": "6/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShrProj.OdpOkno"
+      "opc_path": "Nad1.PrShrProj.OdpOkno"
     },
     {
       "knx_address": "6/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.PrShrProj.HGRezDel"
+      "opc_path": "Nad1.PrShrProj.HGRezDel"
     },
     {
       "knx_address": "8/5/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.LucVklop"
+      "opc_path": "Nad1.Projektiva.LucVklop"
     },
     {
       "knx_address": "8/5/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.LucDeluje"
+      "opc_path": "Nad1.Projektiva.LucDeluje"
     },
     {
       "knx_address": "8/5/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Projektiva.LucProcent"
+      "opc_path": "Nad1.Projektiva.LucProcent"
     },
     {
       "knx_address": "8/5/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.ErrLuc"
+      "opc_path": "Nad1.Projektiva.ErrLuc"
     },
     {
       "knx_address": "8/5/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Projektiva.TrenTemp"
+      "opc_path": "Nad1.Projektiva.TrenTemp"
     },
     {
       "knx_address": "8/5/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Projektiva.NastTemp"
+      "opc_path": "Nad1.Projektiva.NastTemp"
     },
     {
       "knx_address": "8/5/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.Prisotnost"
+      "opc_path": "Nad1.Projektiva.Prisotnost"
     },
     {
       "knx_address": "8/5/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.HGVentil"
+      "opc_path": "Nad1.Projektiva.HGVentil"
     },
     {
       "knx_address": "8/5/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.HGOpozKond"
+      "opc_path": "Nad1.Projektiva.HGOpozKond"
     },
     {
       "knx_address": "8/5/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Projektiva.OdpOkno"
+      "opc_path": "Nad1.Projektiva.OdpOkno"
     },
     {
       "knx_address": "8/5/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Projektiva.HGRezDel"
+      "opc_path": "Nad1.Projektiva.HGRezDel"
     },
     {
       "knx_address": "8/4/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.LucVklop"
+      "opc_path": "Nad1.RefRazGrad.LucVklop"
     },
     {
       "knx_address": "8/4/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.LucDeluje"
+      "opc_path": "Nad1.RefRazGrad.LucDeluje"
     },
     {
       "knx_address": "8/4/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.RefRazGrad.LucProcent"
+      "opc_path": "Nad1.RefRazGrad.LucProcent"
     },
     {
       "knx_address": "8/4/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.ErrLuc"
+      "opc_path": "Nad1.RefRazGrad.ErrLuc"
     },
     {
       "knx_address": "8/4/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.RefRazGrad.TrenTemp"
+      "opc_path": "Nad1.RefRazGrad.TrenTemp"
     },
     {
       "knx_address": "8/4/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.RefRazGrad.NastTemp"
+      "opc_path": "Nad1.RefRazGrad.NastTemp"
     },
     {
       "knx_address": "8/4/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.Prisotnost"
+      "opc_path": "Nad1.RefRazGrad.Prisotnost"
     },
     {
       "knx_address": "8/4/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.HGVentil"
+      "opc_path": "Nad1.RefRazGrad.HGVentil"
     },
     {
       "knx_address": "8/4/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.HGOpozKond"
+      "opc_path": "Nad1.RefRazGrad.HGOpozKond"
     },
     {
       "knx_address": "8/4/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefRazGrad.OdpOkno"
+      "opc_path": "Nad1.RefRazGrad.OdpOkno"
     },
     {
       "knx_address": "8/4/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.RefRazGrad.HGRezDel"
+      "opc_path": "Nad1.RefRazGrad.HGRezDel"
     },
     {
       "knx_address": "8/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.LucVklop"
+      "opc_path": "Nad1.InvestDE.LucVklop"
     },
     {
       "knx_address": "8/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.LucDeluje"
+      "opc_path": "Nad1.InvestDE.LucDeluje"
     },
     {
       "knx_address": "8/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.InvestDE.LucProcent"
+      "opc_path": "Nad1.InvestDE.LucProcent"
     },
     {
       "knx_address": "8/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.ErrLuc"
+      "opc_path": "Nad1.InvestDE.ErrLuc"
     },
     {
       "knx_address": "8/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.InvestDE.TrenTemp"
+      "opc_path": "Nad1.InvestDE.TrenTemp"
     },
     {
       "knx_address": "8/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.InvestDE.NastTemp"
+      "opc_path": "Nad1.InvestDE.NastTemp"
     },
     {
       "knx_address": "8/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.Prisotnost"
+      "opc_path": "Nad1.InvestDE.Prisotnost"
     },
     {
       "knx_address": "8/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.HGVentil"
+      "opc_path": "Nad1.InvestDE.HGVentil"
     },
     {
       "knx_address": "8/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.HGOpozKond"
+      "opc_path": "Nad1.InvestDE.HGOpozKond"
     },
     {
       "knx_address": "8/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.InvestDE.OdpOkno"
+      "opc_path": "Nad1.InvestDE.OdpOkno"
     },
     {
       "knx_address": "8/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.InvestDE.HGRezDel"
+      "opc_path": "Nad1.InvestDE.HGRezDel"
     },
     {
       "knx_address": "8/2/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.LucVklop"
+      "opc_path": "Nad1.RefElmon.LucVklop"
     },
     {
       "knx_address": "8/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.LucDeluje"
+      "opc_path": "Nad1.RefElmon.LucDeluje"
     },
     {
       "knx_address": "8/2/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.RefElmon.LucProcent"
+      "opc_path": "Nad1.RefElmon.LucProcent"
     },
     {
       "knx_address": "8/2/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.ErrLuc"
+      "opc_path": "Nad1.RefElmon.ErrLuc"
     },
     {
       "knx_address": "8/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.RefElmon.TrenTemp"
+      "opc_path": "Nad1.RefElmon.TrenTemp"
     },
     {
       "knx_address": "8/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.RefElmon.NastTemp"
+      "opc_path": "Nad1.RefElmon.NastTemp"
     },
     {
       "knx_address": "8/2/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.Prisotnost"
+      "opc_path": "Nad1.RefElmon.Prisotnost"
     },
     {
       "knx_address": "8/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.HGVentil"
+      "opc_path": "Nad1.RefElmon.HGVentil"
     },
     {
       "knx_address": "8/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.HGOpozKond"
+      "opc_path": "Nad1.RefElmon.HGOpozKond"
     },
     {
       "knx_address": "8/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.RefElmon.OdpOkno"
+      "opc_path": "Nad1.RefElmon.OdpOkno"
     },
     {
       "knx_address": "8/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.RefElmon.HGRezDel"
+      "opc_path": "Nad1.RefElmon.HGRezDel"
     },
     {
       "knx_address": "8/1/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.LucVklop"
+      "opc_path": "Nad1.VodRazGrad.LucVklop"
     },
     {
       "knx_address": "8/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.LucDeluje"
+      "opc_path": "Nad1.VodRazGrad.LucDeluje"
     },
     {
       "knx_address": "8/1/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.VodRazGrad.LucProcent"
+      "opc_path": "Nad1.VodRazGrad.LucProcent"
     },
     {
       "knx_address": "8/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.ErrLuc"
+      "opc_path": "Nad1.VodRazGrad.ErrLuc"
     },
     {
       "knx_address": "8/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodRazGrad.TrenTemp"
+      "opc_path": "Nad1.VodRazGrad.TrenTemp"
     },
     {
       "knx_address": "8/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodRazGrad.NastTemp"
+      "opc_path": "Nad1.VodRazGrad.NastTemp"
     },
     {
       "knx_address": "8/1/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.Prisotnost"
+      "opc_path": "Nad1.VodRazGrad.Prisotnost"
     },
     {
       "knx_address": "8/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.HGVentil"
+      "opc_path": "Nad1.VodRazGrad.HGVentil"
     },
     {
       "knx_address": "8/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.HGOpozKond"
+      "opc_path": "Nad1.VodRazGrad.HGOpozKond"
     },
     {
       "knx_address": "8/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodRazGrad.OdpOkno"
+      "opc_path": "Nad1.VodRazGrad.OdpOkno"
     },
     {
       "knx_address": "8/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.VodRazGrad.HGRezDel"
+      "opc_path": "Nad1.VodRazGrad.HGRezDel"
     },
     {
       "knx_address": "7/6/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.LucVklop"
+      "opc_path": "Nad1.Informatika.LucVklop"
     },
     {
       "knx_address": "7/6/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.LucDeluje"
+      "opc_path": "Nad1.Informatika.LucDeluje"
     },
     {
       "knx_address": "7/6/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Informatika.LucProcent"
+      "opc_path": "Nad1.Informatika.LucProcent"
     },
     {
       "knx_address": "7/6/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.ErrLuc"
+      "opc_path": "Nad1.Informatika.ErrLuc"
     },
     {
       "knx_address": "7/6/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Informatika.TrenTemp"
+      "opc_path": "Nad1.Informatika.TrenTemp"
     },
     {
       "knx_address": "7/6/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Informatika.NastTemp"
+      "opc_path": "Nad1.Informatika.NastTemp"
     },
     {
       "knx_address": "7/6/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.Prisotnost"
+      "opc_path": "Nad1.Informatika.Prisotnost"
     },
     {
       "knx_address": "7/6/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.HGVentil"
+      "opc_path": "Nad1.Informatika.HGVentil"
     },
     {
       "knx_address": "7/6/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.HGOpozKond"
+      "opc_path": "Nad1.Informatika.HGOpozKond"
     },
     {
       "knx_address": "7/6/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Informatika.OdpOkno"
+      "opc_path": "Nad1.Informatika.OdpOkno"
     },
     {
       "knx_address": "7/6/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Informatika.HGRezDel"
+      "opc_path": "Nad1.Informatika.HGRezDel"
     },
     {
       "knx_address": "7/5/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.LucVklop"
+      "opc_path": "Nad1.Pisarna2.LucVklop"
     },
     {
       "knx_address": "7/5/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.LucDeluje"
+      "opc_path": "Nad1.Pisarna2.LucDeluje"
     },
     {
       "knx_address": "7/5/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Pisarna2.LucProcent"
+      "opc_path": "Nad1.Pisarna2.LucProcent"
     },
     {
       "knx_address": "7/5/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.ErrLuc"
+      "opc_path": "Nad1.Pisarna2.ErrLuc"
     },
     {
       "knx_address": "7/5/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Pisarna2.TrenTemp"
+      "opc_path": "Nad1.Pisarna2.TrenTemp"
     },
     {
       "knx_address": "7/5/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Pisarna2.NastTemp"
+      "opc_path": "Nad1.Pisarna2.NastTemp"
     },
     {
       "knx_address": "7/5/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.Prisotnost"
+      "opc_path": "Nad1.Pisarna2.Prisotnost"
     },
     {
       "knx_address": "7/5/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.HGVentil"
+      "opc_path": "Nad1.Pisarna2.HGVentil"
     },
     {
       "knx_address": "7/5/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.HGOpozKond"
+      "opc_path": "Nad1.Pisarna2.HGOpozKond"
     },
     {
       "knx_address": "7/5/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna2.OdpOkno"
+      "opc_path": "Nad1.Pisarna2.OdpOkno"
     },
     {
       "knx_address": "7/5/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Pisarna2.HGRezDel"
+      "opc_path": "Nad1.Pisarna2.HGRezDel"
     },
     {
       "knx_address": "7/4/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.LucVklop"
+      "opc_path": "Nad1.Pisarna1.LucVklop"
     },
     {
       "knx_address": "7/4/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.LucDeluje"
+      "opc_path": "Nad1.Pisarna1.LucDeluje"
     },
     {
       "knx_address": "7/4/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Pisarna1.LucProcent"
+      "opc_path": "Nad1.Pisarna1.LucProcent"
     },
     {
       "knx_address": "7/4/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.ErrLuc"
+      "opc_path": "Nad1.Pisarna1.ErrLuc"
     },
     {
       "knx_address": "7/4/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Pisarna1.TrenTemp"
+      "opc_path": "Nad1.Pisarna1.TrenTemp"
     },
     {
       "knx_address": "7/4/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Pisarna1.NastTemp"
+      "opc_path": "Nad1.Pisarna1.NastTemp"
     },
     {
       "knx_address": "7/4/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.Prisotnost"
+      "opc_path": "Nad1.Pisarna1.Prisotnost"
     },
     {
       "knx_address": "7/4/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.HGVentil"
+      "opc_path": "Nad1.Pisarna1.HGVentil"
     },
     {
       "knx_address": "7/4/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.HGOpozKond"
+      "opc_path": "Nad1.Pisarna1.HGOpozKond"
     },
     {
       "knx_address": "7/4/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Pisarna1.OdpOkno"
+      "opc_path": "Nad1.Pisarna1.OdpOkno"
     },
     {
       "knx_address": "7/4/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Pisarna1.HGRezDel"
+      "opc_path": "Nad1.Pisarna1.HGRezDel"
     },
     {
       "knx_address": "7/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.LucVklop"
+      "opc_path": "Nad1.VodSpSek.LucVklop"
     },
     {
       "knx_address": "7/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.LucDeluje"
+      "opc_path": "Nad1.VodSpSek.LucDeluje"
     },
     {
       "knx_address": "7/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.VodSpSek.LucProcent"
+      "opc_path": "Nad1.VodSpSek.LucProcent"
     },
     {
       "knx_address": "7/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.ErrLuc"
+      "opc_path": "Nad1.VodSpSek.ErrLuc"
     },
     {
       "knx_address": "7/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodSpSek.TrenTemp"
+      "opc_path": "Nad1.VodSpSek.TrenTemp"
     },
     {
       "knx_address": "7/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.VodSpSek.NastTemp"
+      "opc_path": "Nad1.VodSpSek.NastTemp"
     },
     {
       "knx_address": "7/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.Prisotnost"
+      "opc_path": "Nad1.VodSpSek.Prisotnost"
     },
     {
       "knx_address": "7/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.HGVentil"
+      "opc_path": "Nad1.VodSpSek.HGVentil"
     },
     {
       "knx_address": "7/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.HGOpozKond"
+      "opc_path": "Nad1.VodSpSek.HGOpozKond"
     },
     {
       "knx_address": "7/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.VodSpSek.OdpOkno"
+      "opc_path": "Nad1.VodSpSek.OdpOkno"
     },
     {
       "knx_address": "7/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.VodSpSek.HGRezDel"
+      "opc_path": "Nad1.VodSpSek.HGRezDel"
     },
     {
       "knx_address": "7/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrShr.TrenTemp"
+      "opc_path": "Nad1.PrShr.TrenTemp"
     },
     {
       "knx_address": "7/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.PrShr.NastTemp"
+      "opc_path": "Nad1.PrShr.NastTemp"
     },
     {
       "knx_address": "7/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShr.HGVentil"
+      "opc_path": "Nad1.PrShr.HGVentil"
     },
     {
       "knx_address": "7/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShr.HGOpozKond"
+      "opc_path": "Nad1.PrShr.HGOpozKond"
     },
     {
       "knx_address": "7/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.PrShr.OdpOkno"
+      "opc_path": "Nad1.PrShr.OdpOkno"
     },
     {
       "knx_address": "7/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.PrShr.HGRezDel"
+      "opc_path": "Nad1.PrShr.HGRezDel"
     },
     {
       "knx_address": "7/1/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Kopirnica.TrenTemp"
+      "opc_path": "Nad1.Kopirnica.TrenTemp"
     },
     {
       "knx_address": "7/1/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Kopirnica.NastTemp"
+      "opc_path": "Nad1.Kopirnica.NastTemp"
     },
     {
       "knx_address": "7/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Kopirnica.HGVentil"
+      "opc_path": "Nad1.Kopirnica.HGVentil"
     },
     {
       "knx_address": "7/1/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Kopirnica.HGOpozKond"
+      "opc_path": "Nad1.Kopirnica.HGOpozKond"
     },
     {
       "knx_address": "7/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Kopirnica.OdpOkno"
+      "opc_path": "Nad1.Kopirnica.OdpOkno"
     },
     {
       "knx_address": "7/1/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Kopirnica.HGRezDel"
+      "opc_path": "Nad1.Kopirnica.HGRezDel"
     },
     {
       "knx_address": "6/2/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Cistila.TrenTemp"
+      "opc_path": "Nad1.Cistila.TrenTemp"
     },
     {
       "knx_address": "6/2/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Cistila.NastTemp"
+      "opc_path": "Nad1.Cistila.NastTemp"
     },
     {
       "knx_address": "6/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Cistila.HGVentil"
+      "opc_path": "Nad1.Cistila.HGVentil"
     },
     {
       "knx_address": "6/2/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Cistila.HGOpozKond"
+      "opc_path": "Nad1.Cistila.HGOpozKond"
     },
     {
       "knx_address": "6/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Cistila.OdpOkno"
+      "opc_path": "Nad1.Cistila.OdpOkno"
     },
     {
       "knx_address": "6/2/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Cistila.HGRezDel"
+      "opc_path": "Nad1.Cistila.HGRezDel"
     },
     {
       "knx_address": "5/3/0",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.LucVklop"
+      "opc_path": "Nad1.Avla.LucVklop"
     },
     {
       "knx_address": "5/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.LucDeluje"
+      "opc_path": "Nad1.Avla.LucDeluje"
     },
     {
       "knx_address": "5/3/12",
       "dpt": "5.001",
-      "opc_path": "knx.Nad1.Avla.LucProcent"
+      "opc_path": "Nad1.Avla.LucProcent"
     },
     {
       "knx_address": "5/3/13",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.ErrLuc"
+      "opc_path": "Nad1.Avla.ErrLuc"
     },
     {
       "knx_address": "5/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Avla.TrenTemp"
+      "opc_path": "Nad1.Avla.TrenTemp"
     },
     {
       "knx_address": "5/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Nad1.Avla.NastTemp"
+      "opc_path": "Nad1.Avla.NastTemp"
     },
     {
       "knx_address": "5/3/4",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.Prisotnost"
+      "opc_path": "Nad1.Avla.Prisotnost"
     },
     {
       "knx_address": "5/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.HGVentil"
+      "opc_path": "Nad1.Avla.HGVentil"
     },
     {
       "knx_address": "5/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.HGOpozKond"
+      "opc_path": "Nad1.Avla.HGOpozKond"
     },
     {
       "knx_address": "5/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Nad1.Avla.OdpOkno"
+      "opc_path": "Nad1.Avla.OdpOkno"
     },
     {
       "knx_address": "5/3/10",
       "dpt": "4.001",
-      "opc_path": "knx.Nad1.Avla.HGRezDel"
+      "opc_path": "Nad1.Avla.HGRezDel"
     },
     {
       "knx_address": "0/0/1",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.ErrSenVeter"
+      "opc_path": "VrPo.ErrSenVeter"
     },
     {
       "knx_address": "0/0/2",
       "dpt": "9.005",
-      "opc_path": "knx.VrPo.HitVeter"
+      "opc_path": "VrPo.HitVeter"
     },
     {
       "knx_address": "0/0/3",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.AlarmVeter"
+      "opc_path": "VrPo.AlarmVeter"
     },
     {
       "knx_address": "0/0/4",
       "dpt": "9.004",
-      "opc_path": "knx.VrPo.Svetlost"
+      "opc_path": "VrPo.Svetlost"
     },
     {
       "knx_address": "0/0/5",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.PrisotnostSonca"
+      "opc_path": "VrPo.PrisotnostSonca"
     },
     {
       "knx_address": "0/0/6",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.AlarmPadavine"
+      "opc_path": "VrPo.AlarmPadavine"
     },
     {
       "knx_address": "0/0/7",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.ErrSenTemp"
+      "opc_path": "VrPo.ErrSenTemp"
     },
     {
       "knx_address": "0/0/8",
       "dpt": "9.001",
-      "opc_path": "knx.VrPo.ZunTemp"
+      "opc_path": "VrPo.ZunTemp"
     },
     {
       "knx_address": "0/0/9",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.AlarmZmrzuje"
+      "opc_path": "VrPo.AlarmZmrzuje"
     },
     {
       "knx_address": "0/0/10",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.SeverFasada1LetoZima"
+      "opc_path": "VrPo.SeverFasada1LetoZima"
     },
     {
       "knx_address": "0/0/11",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.SeverFasada1Sonce"
+      "opc_path": "VrPo.SeverFasada1Sonce"
     },
     {
       "knx_address": "0/0/15",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.SeverFasada1Spust"
+      "opc_path": "VrPo.SeverFasada1Spust"
     },
     {
       "knx_address": "0/0/16",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.SeverFasada1Nagib"
+      "opc_path": "VrPo.SeverFasada1Nagib"
     },
     {
       "knx_address": "0/0/17",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.VzhodFasada2LetoZima"
+      "opc_path": "VrPo.VzhodFasada2LetoZima"
     },
     {
       "knx_address": "0/0/18",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.VzhodFasada2Sonce"
+      "opc_path": "VrPo.VzhodFasada2Sonce"
     },
     {
       "knx_address": "0/0/22",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.VzhodFasada2Spust"
+      "opc_path": "VrPo.VzhodFasada2Spust"
     },
     {
       "knx_address": "0/0/23",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.VzhodFasada2Nagib"
+      "opc_path": "VrPo.VzhodFasada2Nagib"
     },
     {
       "knx_address": "0/0/24",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.JugFasada3LetoZima"
+      "opc_path": "VrPo.JugFasada3LetoZima"
     },
     {
       "knx_address": "0/0/25",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.JugFasada3Sonce"
+      "opc_path": "VrPo.JugFasada3Sonce"
     },
     {
       "knx_address": "0/0/29",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.JugFasada3Spust"
+      "opc_path": "VrPo.JugFasada3Spust"
     },
     {
       "knx_address": "0/0/30",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.JugFasada3Nagib"
+      "opc_path": "VrPo.JugFasada3Nagib"
     },
     {
       "knx_address": "0/0/31",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.ZahodFasada4LetoZima"
+      "opc_path": "VrPo.ZahodFasada4LetoZima"
     },
     {
       "knx_address": "0/0/32",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.ZahodFasada4Sonce"
+      "opc_path": "VrPo.ZahodFasada4Sonce"
     },
     {
       "knx_address": "0/0/36",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.ZahodFasada4Spust"
+      "opc_path": "VrPo.ZahodFasada4Spust"
     },
     {
       "knx_address": "0/0/37",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.ZahodFasada4Nagib"
+      "opc_path": "VrPo.ZahodFasada4Nagib"
     },
     {
       "knx_address": "0/0/38",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.AlarmDvigZaluzij"
+      "opc_path": "VrPo.AlarmDvigZaluzij"
     },
     {
       "knx_address": "0/0/39",
       "dpt": "1.005",
-      "opc_path": "knx.VrPo.Mrak"
+      "opc_path": "VrPo.Mrak"
     },
     {
       "knx_address": "0/0/40",
       "dpt": "9.004",
-      "opc_path": "knx.VrPo.NastSvetlost"
+      "opc_path": "VrPo.NastSvetlost"
     },
     {
       "knx_address": "0/0/41",
       "dpt": "9.005",
-      "opc_path": "knx.VrPo.NastAlarmVeter"
+      "opc_path": "VrPo.NastAlarmVeter"
     },
     {
       "knx_address": "0/0/42",
       "dpt": "9.001",
-      "opc_path": "knx.VrPo.NastAlarmTemp"
+      "opc_path": "VrPo.NastAlarmTemp"
     },
     {
       "knx_address": "0/0/43",
       "dpt": "9.004",
-      "opc_path": "knx.VrPo.NastMejaZora"
+      "opc_path": "VrPo.NastMejaZora"
     },
     {
       "knx_address": "0/0/44",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.Varnost"
+      "opc_path": "VrPo.Varnost"
     },
     {
       "knx_address": "0/0/45",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.SeverRoloLetoZima"
+      "opc_path": "VrPo.SeverRoloLetoZima"
     },
     {
       "knx_address": "0/0/46",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.SeverRoloSonce"
+      "opc_path": "VrPo.SeverRoloSonce"
     },
     {
       "knx_address": "0/0/50",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.SeverRoloSpust"
+      "opc_path": "VrPo.SeverRoloSpust"
     },
     {
       "knx_address": "0/0/51",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.SeverRoloNagib"
+      "opc_path": "VrPo.SeverRoloNagib"
     },
     {
       "knx_address": "0/0/52",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.VzhodRoloLetoZima"
+      "opc_path": "VrPo.VzhodRoloLetoZima"
     },
     {
       "knx_address": "0/0/53",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.VzhodRoloSonce"
+      "opc_path": "VrPo.VzhodRoloSonce"
     },
     {
       "knx_address": "0/0/57",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.VzhodRoloSpust"
+      "opc_path": "VrPo.VzhodRoloSpust"
     },
     {
       "knx_address": "0/0/58",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.VzhodRoloNagib"
+      "opc_path": "VrPo.VzhodRoloNagib"
     },
     {
       "knx_address": "0/0/59",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.JugBrisolejLetoZima"
+      "opc_path": "VrPo.JugBrisolejLetoZima"
     },
     {
       "knx_address": "0/0/60",
       "dpt": "1.001",
-      "opc_path": "knx.VrPo.JugBrisolejSonce"
+      "opc_path": "VrPo.JugBrisolejSonce"
     },
     {
       "knx_address": "0/0/64",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.JugBrisolejSpust"
+      "opc_path": "VrPo.JugBrisolejSpust"
     },
     {
       "knx_address": "0/0/65",
       "dpt": "5.001",
-      "opc_path": "knx.VrPo.JugBrisolejNagib"
+      "opc_path": "VrPo.JugBrisolejNagib"
     },
     {
       "knx_address": "0/1/0",
       "dpt": "1.008",
-      "opc_path": "knx.Zaluzije.SeverGorDol"
+      "opc_path": "Zaluzije.SeverGorDol"
     },
     {
       "knx_address": "0/1/1",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.SeverBlokada"
+      "opc_path": "Zaluzije.SeverBlokada"
     },
     {
       "knx_address": "0/1/2",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.SeverRocnoAvto"
+      "opc_path": "Zaluzije.SeverRocnoAvto"
     },
     {
       "knx_address": "0/1/3",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.SeverStop"
+      "opc_path": "Zaluzije.SeverStop"
     },
     {
       "knx_address": "0/1/4",
       "dpt": "1.008",
-      "opc_path": "knx.Zaluzije.VzhodGorDol"
+      "opc_path": "Zaluzije.VzhodGorDol"
     },
     {
       "knx_address": "0/1/5",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.VzhodBlokada"
+      "opc_path": "Zaluzije.VzhodBlokada"
     },
     {
       "knx_address": "0/1/6",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.VzhodRocnoAvto"
+      "opc_path": "Zaluzije.VzhodRocnoAvto"
     },
     {
       "knx_address": "0/1/7",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.VzhodStop"
+      "opc_path": "Zaluzije.VzhodStop"
     },
     {
       "knx_address": "0/1/8",
       "dpt": "1.008",
-      "opc_path": "knx.Zaluzije.JugGorDol"
+      "opc_path": "Zaluzije.JugGorDol"
     },
     {
       "knx_address": "0/1/9",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.JugBlokada"
+      "opc_path": "Zaluzije.JugBlokada"
     },
     {
       "knx_address": "0/1/10",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.JugRocnoAvto"
+      "opc_path": "Zaluzije.JugRocnoAvto"
     },
     {
       "knx_address": "0/1/11",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.JugStop"
+      "opc_path": "Zaluzije.JugStop"
     },
     {
       "knx_address": "0/1/12",
       "dpt": "1.008",
-      "opc_path": "knx.Zaluzije.ZahodGorDol"
+      "opc_path": "Zaluzije.ZahodGorDol"
     },
     {
       "knx_address": "0/1/13",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.ZahodBlokada"
+      "opc_path": "Zaluzije.ZahodBlokada"
     },
     {
       "knx_address": "0/1/14",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.ZahodRocnoAvto"
+      "opc_path": "Zaluzije.ZahodRocnoAvto"
     },
     {
       "knx_address": "0/1/15",
       "dpt": "1.001",
-      "opc_path": "knx.Zaluzije.ZahodStop"
+      "opc_path": "Zaluzije.ZahodStop"
     },
     {
       "knx_address": "0/2/0",
       "dpt": "1.008",
-      "opc_path": "knx.Roloji.SeverGorDol"
+      "opc_path": "Roloji.SeverGorDol"
     },
     {
       "knx_address": "0/2/1",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.SeverBlokada"
+      "opc_path": "Roloji.SeverBlokada"
     },
     {
       "knx_address": "0/2/2",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.SeverRocnoAvto"
+      "opc_path": "Roloji.SeverRocnoAvto"
     },
     {
       "knx_address": "0/2/3",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.SeverStop"
+      "opc_path": "Roloji.SeverStop"
     },
     {
       "knx_address": "0/2/4",
       "dpt": "1.008",
-      "opc_path": "knx.Roloji.VzhodGorDol"
+      "opc_path": "Roloji.VzhodGorDol"
     },
     {
       "knx_address": "0/2/5",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.VzhodBlokada"
+      "opc_path": "Roloji.VzhodBlokada"
     },
     {
       "knx_address": "0/2/6",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.VzhodRocnoAvto"
+      "opc_path": "Roloji.VzhodRocnoAvto"
     },
     {
       "knx_address": "0/2/7",
       "dpt": "1.001",
-      "opc_path": "knx.Roloji.VzhodStop"
+      "opc_path": "Roloji.VzhodStop"
     },
     {
       "knx_address": "0/2/8",
       "dpt": "1.008",
-      "opc_path": "knx.Brisoleji.JugGorDol"
+      "opc_path": "Brisoleji.JugGorDol"
     },
     {
       "knx_address": "0/2/9",
       "dpt": "1.001",
-      "opc_path": "knx.Brisoleji.JugBlokada"
+      "opc_path": "Brisoleji.JugBlokada"
     },
     {
       "knx_address": "0/2/10",
       "dpt": "1.001",
-      "opc_path": "knx.Brisoleji.JugRocnoAvto"
+      "opc_path": "Brisoleji.JugRocnoAvto"
     },
     {
       "knx_address": "0/2/11",
       "dpt": "1.001",
-      "opc_path": "knx.Brisoleji.JugStop"
+      "opc_path": "Brisoleji.JugStop"
     },
     {
       "knx_address": "0/3/0",
       "dpt": "8",
-      "opc_path": "knx.Grede.Rezim"
+      "opc_path": "Grede.Rezim"
     },
     {
       "knx_address": "0/3/1",
       "dpt": "9.001",
-      "opc_path": "knx.Grede.Histereza"
+      "opc_path": "Grede.Histereza"
     },
     {
       "knx_address": "0/3/2",
       "dpt": "9.001",
-      "opc_path": "knx.Grede.NastTempEkoGret"
+      "opc_path": "Grede.NastTempEkoGret"
     },
     {
       "knx_address": "0/3/3",
       "dpt": "9.001",
-      "opc_path": "knx.Grede.NastTempEkoHlaj"
+      "opc_path": "Grede.NastTempEkoHlaj"
     },
     {
       "knx_address": "0/3/7",
       "dpt": "1.001",
-      "opc_path": "knx.Razs.PritNot.GenIzkl"
+      "opc_path": "Razs.PritNot.GenIzkl"
     },
     {
       "knx_address": "0/3/8",
       "dpt": "1.001",
-      "opc_path": "knx.Razs.PritZun.GenIzkl"
+      "opc_path": "Razs.PritZun.GenIzkl"
     },
     {
       "knx_address": "0/3/9",
       "dpt": "1.001",
-      "opc_path": "knx.Razs.NadNot.GenIzkl"
+      "opc_path": "Razs.NadNot.GenIzkl"
     },
     {
       "knx_address": "0/3/10",
       "dpt": "1.001",
-      "opc_path": "knx.Razs.NadZun.GenIzkl"
+      "opc_path": "Razs.NadZun.GenIzkl"
     },
     {
       "knx_address": "0/3/11",
       "dpt": "1.001",
-      "opc_path": "knx.Razs.AvlaStop.GenIzkl"
+      "opc_path": "Razs.AvlaStop.GenIzkl"
     }
   ]
 }

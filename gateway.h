@@ -6,10 +6,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <time.h> // Potrebno za time_t
+#include <time.h>
 
-// POPRAVEK: Dvignemo omejitev na 500 točk, da prehod sprejme vse naprave iz config.json
-#define MAX_DATAPOINTS 500
+#define MAX_DATAPOINTS 2000
 #define MAX_USERS 10
 
 typedef union {
@@ -24,9 +23,10 @@ typedef struct {
     char opc_path[100];
     uint16_t knx_numeric_addr;
     DP_Value value;
+    uint16_t knx_raw_value; // POPRAVEK: Shramba surovega celoštevilskega stanja (bajtov) za Echo Suppression
     bool is_initialized;
     uint32_t last_read_sent;
-    time_t last_update_time; // POPRAVEK: Časovno polje, ki ga potrebuje pametni polling v main.c
+    time_t last_update_time;
 } DataPoint;
 
 typedef struct {
@@ -39,18 +39,15 @@ typedef struct {
     bool require_encryption;
     UserConfig users[MAX_USERS];
     size_t user_count;
-    DataPoint datapoints[MAX_DATAPOINTS]; // Samodejno razširjeno na 500 preko makra
+    DataPoint datapoints[MAX_DATAPOINTS];
     size_t dp_count;
 } Config;
 
-// Deljena globalna konfiguracija
 extern Config global_config;
 
-// Deklaracije funkcij
 int load_config(const char *filename);
 void init_opcua_server(UA_Server *server, UA_ServerConfig *config);
 void create_opcua_nodes(UA_Server *server);
-
 int init_knx_connection(void);
 void send_knx_write_request(DataPoint *dp);
 void send_knx_read_request(DataPoint *dp);

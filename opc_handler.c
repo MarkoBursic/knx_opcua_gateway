@@ -4,39 +4,49 @@
 #include <open62541/plugin/accesscontrol_default.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "gateway.h"
 
 extern Config global_config;
 extern void send_knx_write_request(DataPoint *dp);
 
+static uint16_t float_to_dpt9(float value) {
+    float v = value * 100.0f;
+    int exponent = 0;
+    int mantissa = (int)roundf(v);
+
+    while (mantissa < -2048 || mantissa > 2047) {
+        mantissa /= 2;
+        exponent++;
+        if (exponent > 15) break;
+    }
+
+    uint16_t raw = 0;
+    if (mantissa < 0) {
+        raw |= 0x8000;
+        mantissa += 2048;
+    }
+    raw |= (exponent & 0x0F) << 11;
+    raw |= (mantissa & 0x07FF);
+    return raw;
+}
+
 static UA_NodeId get_or_create_folder(UA_Server *server, const UA_NodeId *parent, const char *full_path, const char *display_name) {
     UA_NodeId targetNodeId = UA_NODEID_STRING(1, (char*)full_path);
-    
     UA_NodeId outNodeId;
     UA_StatusCode rs = UA_Server_readDataType(server, targetNodeId, &outNodeId);
-    
-    // Če mapa (npr. Nad1) kjerkoli v sistemu že obstaja, jo takoj uporabimo in ne javljamo napak
-    if (rs == UA_STATUSCODE_GOOD || rs != UA_STATUSCODE_BADNODEIDUNKNOWN) {
-        return targetNodeId; 
-    }
+    if (rs == UA_STATUSCODE_GOOD || rs != UA_STATUSCODE_BADNODEIDUNKNOWN) return targetNodeId; 
 
     UA_ObjectAttributes oAttr = UA_ObjectAttributes_default;
     oAttr.displayName = UA_LOCALIZEDTEXT("sl-SI", (char*)display_name);
-    
-    UA_Server_addObjectNode(server, targetNodeId, *parent,
-                            UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
-                            UA_QUALIFIEDNAME(1, (char*)display_name),
-                            UA_NODEID_NUMERIC(0, UA_NS0ID_FOLDERTYPE),
-                            oAttr, NULL, NULL);
+    UA_Server_addObjectNode(server, targetNodeId, *parent, UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
+                            UA_QUALIFIEDNAME(1, (char*)display_name), UA_NODEID_NUMERIC(0, UA_NS0ID_FOLDERTYPE), oAttr, NULL, NULL);
     return targetNodeId;
 }
 
-static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId,
-                       void *sessionContext, const UA_NodeId *nodeId,
-                       void *nodeContext, const UA_NumericRange *range,
-                       const UA_DataValue *data) {
-    
+static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId, void *sessionContext, 
+                       const UA_NodeId *nodeId, void *nodeContext, const UA_NumericRange *range, const UA_DataValue *data) {
     DataPoint *dp = (DataPoint*)nodeContext;
     if (!dp || !data->hasValue) return;
 
@@ -44,40 +54,46 @@ static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId,
 
     if (strncmp(dp->dpt, "1.", 2) == 0) {
         UA_Boolean new_val = *(UA_Boolean*)data->value.data;
-        if (!dp->is_initialized || dp->value.b_val != new_val) {
+        uint16_t raw_target = new_val ? 1 : 0;
+        if (!dp->is_initialized || dp->knx_raw_value != raw_target) {
+            dp->knx_raw_value = raw_target;
             dp->value.b_val = new_val;
             dp->is_initialized = true;
             changed = true;
-            printf("[OPCUA->KNX] Sprememba stikala %s na: %d\n", dp->opc_path, dp->value.b_val);
+            printf("[OPCUA->KNX] Stikalo %s -> Surovo: %d\n", dp->opc_path, dp->knx_raw_value);
         }
     } 
     else if (strncmp(dp->dpt, "5.", 2) == 0) {
-        double percent_val = 0;
-        if (data->value.type == &UA_TYPES[UA_TYPES_INT32]) {
-            percent_val = (double)(*(UA_Int32*)data->value.data);
-        } else if (data->value.type == &UA_TYPES[UA_TYPES_FLOAT]) {
-            percent_val = (double)(*(UA_Float*)data->value.data) * 100.0;
-        } else if (data->value.type == &UA_TYPES[UA_TYPES_BYTE]) {
-            percent_val = (double)(*(UA_Byte*)data->value.data);
-        }
+        float percent_val = 0.0f;
+        if (data->value.type == &UA_TYPES[UA_TYPES_FLOAT]) percent_val = *(UA_Float*)data->value.data;
+        else if (data->value.type == &UA_TYPES[UA_TYPES_INT32]) percent_val = (float)(*(UA_Int32*)data->value.data);
 
-        uint8_t knx_raw = (uint8_t)((percent_val * 255.0) / 100.0);
-        if (percent_val > 100.0) knx_raw = (uint8_t)percent_val;
+        if (percent_val < 0.0f) percent_val = 0.0f;
+        if (percent_val > 100.0f) percent_val = 100.0f;
+        uint16_t raw_target = (uint16_t)((percent_val * 255.0f) / 100.0f);
 
-        if (!dp->is_initialized || dp->value.b_val != knx_raw) {
-            dp->value.b_val = knx_raw;
+        if (!dp->is_initialized || dp->knx_raw_value != raw_target) {
+            dp->knx_raw_value = raw_target;
             dp->is_initialized = true;
             changed = true;
-            printf("[OPCUA->KNX] Sprememba zatemnitve %s -> Vrednost: %d\n", dp->opc_path, knx_raw);
+            printf("[OPCUA->KNX] Zatemnitev %s -> Surovo: %d\n", dp->opc_path, dp->knx_raw_value);
         }
     } 
     else if (strncmp(dp->dpt, "9.", 2) == 0) {
-        UA_Float new_val = *(UA_Float*)data->value.data;
-        if (!dp->is_initialized || dp->value.f_val != new_val) {
-            dp->value.f_val = new_val;
+        UA_Float target_temp = *(UA_Float*)data->value.data;
+        uint16_t raw_target = float_to_dpt9(target_temp);
+
+        if (!dp->is_initialized || dp->knx_raw_value != raw_target) {
+            dp->knx_raw_value = raw_target;
+            int sign = (raw_target & 0x8000) >> 15;
+            int exponent = (raw_target & 0x7800) >> 11;
+            int mantissa = raw_target & 0x07FF;
+            if (sign) mantissa = mantissa - 2048;
+            dp->value.f_val = 0.01f * mantissa * (1 << exponent);
+            
             dp->is_initialized = true;
             changed = true;
-            printf("[OPCUA->KNX] Nastavljanje temperature %s na: %.2f °C\n", dp->opc_path, dp->value.f_val);
+            printf("[OPCUA->KNX] Temperatura %s -> Nastavljeno surovo: 0x%04X (%.2f °C)\n", dp->opc_path, dp->knx_raw_value, dp->value.f_val);
         }
     }
 
@@ -89,32 +105,21 @@ static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId,
 void init_opcua_server(UA_Server *server, UA_ServerConfig *config) {
     if(!server || !config) return;
     UA_ServerConfig_setBasics(config);
-
     UA_Boolean allowAnonymous = true;
-    size_t usernamePasswordLoginSize = 0;
-    UA_UsernamePasswordLogin *usernamePasswordLogin = NULL;
     UA_String securityPolicyNone = UA_STRING("http://opcfoundation.org");
-
-    UA_AccessControl_default(config, allowAnonymous, &securityPolicyNone, 
-                             usernamePasswordLoginSize, usernamePasswordLogin);
-    
+    UA_AccessControl_default(config, allowAnonymous, &securityPolicyNone, 0, NULL);
     create_opcua_nodes(server);
 }
 
-// POPRAVLJENA LOGIKA: Popolnoma varno in čisto rekurzivno grajenje pomešanih JSON poti
 void create_opcua_nodes(UA_Server *server) {
     for (size_t i = 0; i < global_config.dp_count; i++) {
         DataPoint *dp = &global_config.datapoints[i];
-        
         if (dp->is_initialized) continue; 
-
         UA_NodeId current_parent = UA_NODEID_NUMERIC(0, UA_NS0ID_OBJECTSFOLDER);
         
         char path_copy[256];
         strncpy(path_copy, dp->opc_path, sizeof(path_copy) - 1);
         path_copy[sizeof(path_copy) - 1] = '\0';
-        
-        // REŠITEV: Medpomnilnik za pot ob vsakem ciklu popolnoma spraznimo in očistimo spomin
         char current_path[256];
         memset(current_path, 0, sizeof(current_path));
         
@@ -123,26 +128,34 @@ void create_opcua_nodes(UA_Server *server) {
 
         while (token != NULL) {
             char *next_token = strtok_r(NULL, ".", &saveptr);
-            
-            if (current_path[0] != '\0') {
-                strcat(current_path, ".");
-            }
+            if (current_path[0] != '\0') strcat(current_path, ".");
             strcat(current_path, token);
 
             if (next_token != NULL) {
-                // Varno prečkamo obstoječo mapo (ali Nad1 ali Prit), ne glede na prejšnje vnose
                 current_parent = get_or_create_folder(server, &current_parent, current_path, token);
             } else {
-                // Ustvarimo končno spremenljivko naprave na pravilnem mestu
                 UA_VariableAttributes attr = UA_VariableAttributes_default;
-                attr.displayName = UA_LOCALIZEDTEXT("sl-SI", token);
+                
+                // POPRAVEK: Ustvarimo DisplayName iz polne poti, kjer piko zamenjamo s podčrtajem
+                char display_name_under[256];
+                strncpy(display_name_under, dp->opc_path, sizeof(display_name_under) - 1);
+                display_name_under[sizeof(display_name_under) - 1] = '\0';
+                
+                for (size_t j = 0; display_name_under[j] != '\0'; j++) {
+                    if (display_name_under[j] == '.') {
+                        display_name_under[j] = '_';
+                    }
+                }
+
+                // Nastavimo nov dolg in berljiv DisplayName (npr. "Nad1_Pisarna1_LucDeluje")
+                attr.displayName = UA_LOCALIZEDTEXT("sl-SI", display_name_under);
                 attr.description = UA_LOCALIZEDTEXT("sl-SI", dp->knx_address);
 
                 if (strncmp(dp->dpt, "1.", 2) == 0) {
                     UA_Boolean init_val = false;
                     UA_Variant_setScalar(&attr.value, &init_val, &UA_TYPES[UA_TYPES_BOOLEAN]);
                     attr.dataType = UA_TYPES[UA_TYPES_BOOLEAN].typeId;
-                } else if (strncmp(dp->dpt, "9.", 2) == 0) {
+                } else if (strncmp(dp->dpt, "9.", 2) == 0 || strncmp(dp->dpt, "5.", 2) == 0) {
                     UA_Float init_val = 0.0f;
                     UA_Variant_setScalar(&attr.value, &init_val, &UA_TYPES[UA_TYPES_FLOAT]);
                     attr.dataType = UA_TYPES[UA_TYPES_FLOAT].typeId;
@@ -153,24 +166,28 @@ void create_opcua_nodes(UA_Server *server) {
                 }
 
                 attr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
-                UA_NodeId myNodeId = UA_NODEID_STRING(1, dp->opc_path);
                 
-                UA_Server_addVariableNode(server, myNodeId, current_parent,
-                                          UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
-                                          UA_QUALIFIEDNAME(1, token),
-                                          UA_NODEID_NUMERIC(0, UA_NS0ID_BASEDATAVARIABLETYPE),
-                                          attr, dp, NULL);
+                UA_NodeId myNodeId = UA_NODEID_STRING(1, dp->opc_path);
+                UA_QualifiedName browseName = UA_QUALIFIEDNAME(1, dp->opc_path);
 
-                UA_ValueCallback callback;
-                callback.onRead = NULL;
-                callback.onWrite = onWriteKNX;
+                UA_StatusCode retval = UA_Server_addVariableNode(server, myNodeId, current_parent,
+                                          UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES), 
+                                          browseName, 
+                                          UA_NODEID_NUMERIC(0, UA_NS0ID_BASEDATAVARIABLETYPE), attr, dp, NULL);
+
+                if (retval == UA_STATUSCODE_GOOD) {
+                    UA_DataValue dv; UA_DataValue_init(&dv);
+                    dv.hasStatus = true; dv.status = UA_STATUSCODE_BADWAITINGFORINITIALDATA;
+                    UA_Server_writeDataValue(server, myNodeId, dv);
+                }
+
+                UA_ValueCallback callback; callback.onRead = NULL; callback.onWrite = onWriteKNX;
                 UA_Server_setVariableNode_valueCallback(server, myNodeId, callback);
-
                 dp->is_initialized = true;
             }
             token = next_token;
         }
     }
-    printf("[OPCUA] Imenik uspešno zgrajen. Vse pomešane veje (Prit/Nad1) so sedaj v celoti naložene.\n");
+    printf("[OPCUA] Imenik zgrajen. DisplayName uporablja podčrtaje namesto pik.\n");
 }
 

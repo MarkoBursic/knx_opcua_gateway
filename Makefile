@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -O2 -std=gnu99 -D_DEFAULT_SOURCE -D_GNU_SOURCE
-LIBS = -lopen62541 -ljson-c -lpthread
+LIBS = -lopen62541 -ljson-c -lpthread -lm
 
 TARGET = knx_opcua_gateway
 OBJS = main.o config_loader.o opc_handler.o knx_handler.o
@@ -15,5 +15,4 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
-
 
