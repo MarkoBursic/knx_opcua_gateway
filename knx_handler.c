@@ -1,149 +1,305 @@
 #include "gateway.h"
+#include "knx_eibd.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <open62541/server.h>
 
-static FILE *knx_monitor_stream = NULL;
+// Watchdog bookkeeping (KNX thread only) - see main.c, section 3b.
+time_t g_last_response_time = 0;
+unsigned int g_reads_since_response = 0;
+__thread int g_internal_opc_write = 0;
+
+// 1 = izpisuj tuja vprasanja (EXT-QRY), 0 = ne
+#define LOG_EXT_QUERIES 1
+time_t g_last_rx_time = 0;
 
 int init_knx_connection(void) {
-    printf("[KNX] Inicializacija asinsidega sprejemnika preko groupsocketlisten...\n");
-    knx_monitor_stream = popen("knxtool groupsocketlisten ip:127.0.0.0 2>/dev/null", "r");
-    if (!knx_monitor_stream) {
-        printf("[ERROR] Ne morem zagnati knxtool monitorja za branje stanj!\n");
+    const char *url = global_config.knx_connection.eibd_url;
+    printf("[KNX] Povezovanje na knxd preko %s...\n", url[0] ? url : "local:/run/knx");
+
+    int fd = knx_eibd_open(url[0] ? url : "local:/run/knx");
+    if (fd < 0) {
+        printf("[ERROR] Ne morem vzpostaviti povezave na knxd!\n");
         return -1;
     }
-    printf("[KNX] Poslušanje avtobusa uspešno aktivirano.\n");
-    return fileno(knx_monitor_stream);
+    printf("[KNX] Povezava uspešna.\n");
+    return fd;
 }
 
 void send_knx_read_request(DataPoint *dp) {
-    char cmd[256]; 
-    snprintf(cmd, sizeof(cmd), "knxtool groupread ip:127.0.0.0 %s > /dev/null 2>&1", dp->knx_address);
-    system(cmd);
+    uint16_t dst = knx_parse_group_address(dp->knx_address);
+    if (knx_eibd_send_group_read(dst) < 0) {
+        printf("[WARN] Napaka pri pošiljanju GroupValueRead za %s (%s)\n", dp->opc_path, dp->knx_address);
+        return;
+    }
+    g_reads_since_response++;
 }
 
+// Encodes dp's current logical value into raw KNX bytes for the wire,
+// based on its DPT main type, and sends a GroupValueWrite.
 void send_knx_write_request(DataPoint *dp) {
-    char cmd[256]; 
+    uint16_t dst = knx_parse_group_address(dp->knx_address);
+    int rc = -1;
 
     if (strncmp(dp->dpt, "1.", 2) == 0) {
-        snprintf(cmd, sizeof(cmd), "knxtool groupswrite ip:127.0.0.0 %s %d > /dev/null 2>&1", 
-                 dp->knx_address, dp->value.b_val);
-        system(cmd);
-        dp->last_update_time = time(NULL);
-        printf("[KNX-SISTEM] Izveden vklop prek knxtool za %s -> %d\n", dp->opc_path, dp->value.b_val);
-    } 
+        // 1 bit - switches, alarms, up/down, etc.
+        rc = knx_eibd_send_group_write_small(dst, dp->knx_raw_value & 0x01);
+        printf("[KNX-SISTEM] Izveden vklop (DPT1) za %s (%s) -> %d\n", dp->opc_path, dp->knx_address, dp->knx_raw_value & 0x01);
+    }
     else if (strncmp(dp->dpt, "5.", 2) == 0) {
-        snprintf(cmd, sizeof(cmd), "knxtool groupswrite ip:127.0.0.0 %s %d > /dev/null 2>&1", 
-                 dp->knx_address, dp->knx_raw_value); // Pošljemo surov celoštevilski bajt
-        system(cmd);
-        dp->last_update_time = time(NULL);
-        printf("[KNX-SISTEM] Izveden vklop prek knxtool za %s -> Surova vrednost: %d\n", dp->opc_path, dp->knx_raw_value);
+        // 1 byte unsigned - percentage/scaling
+        uint8_t b = (uint8_t)(dp->knx_raw_value & 0xFF);
+        rc = knx_eibd_send_group_write(dst, &b, 1);
+        printf("[KNX-SISTEM] Izveden zapis (DPT5) za %s -> Surovo: %u\n", dp->opc_path, b);
+    }
+    else if (strncmp(dp->dpt, "4.", 2) == 0) {
+        // 1 byte character (DPT4.001 ASCII)
+        uint8_t b = (uint8_t)(dp->knx_raw_value & 0xFF);
+        rc = knx_eibd_send_group_write(dst, &b, 1);
+        printf("[KNX-SISTEM] Izveden zapis (DPT4) za %s -> Znak: 0x%02X\n", dp->opc_path, b);
+    }
+    else if (strcmp(dp->dpt, "8") == 0 || strncmp(dp->dpt, "8.", 2) == 0) {
+        // 2 byte signed
+        uint8_t b[2] = { (uint8_t)((dp->knx_raw_value >> 8) & 0xFF), (uint8_t)(dp->knx_raw_value & 0xFF) };
+        rc = knx_eibd_send_group_write(dst, b, 2);
+        printf("[KNX-SISTEM] Izveden zapis (DPT8) za %s -> Surovo: 0x%04X\n", dp->opc_path, dp->knx_raw_value);
     }
     else if (strncmp(dp->dpt, "9.", 2) == 0) {
-        // Za DPT9 iz surove 16-bitne vrednosti rekonstruiramo fizikalni float za knxtool
-        int sign = (dp->knx_raw_value & 0x8000) >> 15;
-        int exponent = (dp->knx_raw_value & 0x7800) >> 11;
-        int mantissa = dp->knx_raw_value & 0x07FF;
-        if (sign) mantissa = mantissa - 2048;
-        float temp_to_send = 0.01f * mantissa * (1 << exponent);
+        // 2 byte float16 (DPT9.xxx) - dp->knx_raw_value already holds the
+        // encoded 16-bit float form, computed by the OPC UA write callback.
+        uint8_t b[2] = { (uint8_t)((dp->knx_raw_value >> 8) & 0xFF), (uint8_t)(dp->knx_raw_value & 0xFF) };
+        rc = knx_eibd_send_group_write(dst, b, 2);
+        printf("[KNX-SISTEM] Izveden zapis (DPT9) za %s -> Vrednost: %.2f (Surovo: 0x%04X)\n",
+               dp->opc_path, dp->value.f_val, dp->knx_raw_value);
+    }
+    else {
+        printf("[WARN] DPT '%s' za %s nima definiranega enkoderja za pisanje - preskočeno.\n", dp->dpt, dp->opc_path);
+        return;
+    }
 
-        snprintf(cmd, sizeof(cmd), "knxtool groupswrite ip:127.0.0.0 %s %.2f > /dev/null 2>&1", 
-                 dp->knx_address, temp_to_send);
-        system(cmd);
+    if (rc == 0) {
         dp->last_update_time = time(NULL);
-        printf("[KNX-SISTEM] Nastavljena temperatura za %s -> Vrednost: %.2f °C (Surovo: 0x%04X)\n", dp->opc_path, temp_to_send, dp->knx_raw_value);
+    } else {
+        printf("[WARN] Napaka pri pošiljanju GroupValueWrite za %s (%s)\n", dp->opc_path, dp->knx_address);
     }
 }
 
+// Surova vrednost telegrama za DPT naprave (ista predstavitev kot dp->knx_raw_value).
+// Vrne false, ce telegram nima dovolj podatkov za ta DPT.
+static bool telegram_raw(const DataPoint *dp, const KnxTelegram *tel, uint16_t *raw) {
+    if (strncmp(dp->dpt, "1.", 2) == 0) { *raw = tel->short_value & 0x01; return true; }
+    if (strncmp(dp->dpt, "5.", 2) == 0 || strncmp(dp->dpt, "4.", 2) == 0) {
+        if (tel->data_len < 1) return false;
+        *raw = tel->data[0];
+        return true;
+    }
+    if (strcmp(dp->dpt, "8") == 0 || strncmp(dp->dpt, "8.", 2) == 0 || strncmp(dp->dpt, "9.", 2) == 0) {
+        if (tel->data_len < 2) return false;
+        *raw = (uint16_t)((tel->data[0] << 8) | tel->data[1]);
+        return true;
+    }
+    return false;
+}
+
+// Cloveku berljiva vrednost iz surove (enaka dekodiranja kot v handle_knx_traffic).
+static void format_raw(const DataPoint *dp, uint16_t raw, char *out, size_t n) {
+    if (strncmp(dp->dpt, "1.", 2) == 0) {
+        snprintf(out, n, "%s", raw ? "ON" : "OFF");
+    } else if (strncmp(dp->dpt, "5.", 2) == 0) {
+        snprintf(out, n, "%.1f%%", (double)raw * 100.0 / 255.0);
+    } else if (strncmp(dp->dpt, "4.", 2) == 0) {
+        snprintf(out, n, "0x%02X", raw);
+    } else if (strcmp(dp->dpt, "8") == 0 || strncmp(dp->dpt, "8.", 2) == 0) {
+        snprintf(out, n, "%d", (int)(int16_t)raw);
+    } else if (strncmp(dp->dpt, "9.", 2) == 0) {
+        int sign = (raw & 0x8000) >> 15;
+        int exponent = (raw & 0x7800) >> 11;
+        int mantissa = raw & 0x07FF;
+        if (sign) mantissa -= 2048;
+        snprintf(out, n, "%.2f", 0.01 * mantissa * (1 << exponent));
+    } else {
+        snprintf(out, n, "0x%04X", raw);
+    }
+}
+
+// Surovi podatki telegrama za izpis (kratka vrednost: stevilka, sicer hex bajti).
+static void format_bytes(const KnxTelegram *tel, char *out, size_t n) {
+    if (tel->data_len == 0) {
+        snprintf(out, n, "%u", tel->short_value);
+        return;
+    }
+    size_t off = 0;
+    out[0] = '\0';
+    for (uint8_t i = 0; i < tel->data_len && off + 4 < n; i++) {
+        off += (size_t)snprintf(out + off, n - off, "%s%02X", i ? " " : "", tel->data[i]);
+    }
+}
+
+static void src_to_str(uint16_t a, char *out, size_t n) {
+    snprintf(out, n, "%u.%u.%u", (a >> 12) & 0x0F, (a >> 8) & 0x0F, a & 0xFF);
+}
+
+// Vsak prestrezen telegram naprave iz config.json (tudi z enako vrednostjo) zapisemo v
+// OPC UA z novim izvornim casovnim zigom. Zapis je oznacen kot "notranji", da
+// onWriteKNX v opc_handler.c te vrednosti nikoli ne poslje nazaj na bus.
+static void publish_to_opcua(UA_Server *server, DataPoint *dp, uint16_t raw) {
+    UA_Boolean b = false;
+    UA_Float f = 0.0f;
+    UA_Int32 i32 = 0;
+    UA_DataValue dv;
+    UA_DataValue_init(&dv);
+
+    if (strncmp(dp->dpt, "1.", 2) == 0) {
+        b = (raw & 0x01) ? true : false;
+        dp->value.b_val = b;
+        UA_Variant_setScalar(&dv.value, &b, &UA_TYPES[UA_TYPES_BOOLEAN]);
+    } else if (strncmp(dp->dpt, "5.", 2) == 0) {
+        f = ((float)raw * 100.0f) / 255.0f;
+        UA_Variant_setScalar(&dv.value, &f, &UA_TYPES[UA_TYPES_FLOAT]);
+    } else if (strncmp(dp->dpt, "4.", 2) == 0) {
+        i32 = (UA_Int32)raw;
+        dp->value.i32_val = i32;
+        UA_Variant_setScalar(&dv.value, &i32, &UA_TYPES[UA_TYPES_INT32]);
+    } else if (strcmp(dp->dpt, "8") == 0 || strncmp(dp->dpt, "8.", 2) == 0) {
+        i32 = (UA_Int32)(int16_t)raw;
+        dp->value.i32_val = i32;
+        UA_Variant_setScalar(&dv.value, &i32, &UA_TYPES[UA_TYPES_INT32]);
+    } else if (strncmp(dp->dpt, "9.", 2) == 0) {
+        int sign = (raw & 0x8000) >> 15;
+        int exponent = (raw & 0x7800) >> 11;
+        int mantissa = raw & 0x07FF;
+        if (sign) mantissa -= 2048;
+        f = 0.01f * mantissa * (1 << exponent);
+        dp->value.f_val = f;
+        UA_Variant_setScalar(&dv.value, &f, &UA_TYPES[UA_TYPES_FLOAT]);
+    } else {
+        return;
+    }
+
+    dv.hasValue = true;
+    dv.status = UA_STATUSCODE_GOOD;
+    dv.hasStatus = true;
+    dv.hasSourceTimestamp = true;
+    dv.sourceTimestamp = UA_DateTime_now();
+
+    UA_NodeId node = UA_NODEID_STRING(1, dp->opc_path);
+    g_internal_opc_write = 1;
+    UA_Server_writeDataValue(server, node, dv);
+    g_internal_opc_write = 0;
+}
+
+// Telegram z vrednostjo (Write ali Response) za datapoint iz config.json.
+//   KNX-RESP  = odgovor na NASE vprasanje (KNX-INIT / KNX-POLL), ujema se po naslovu v oknu READ_ANSWER_WINDOW_SEC
+//   KNX-SNIFF = vse ostalo: naprava je sama poslala vrednost ali pa je odgovorila nekomu drugemu
+static void handle_dp_value(UA_Server *server, DataPoint *dp, const KnxTelegram *tel, const char *src) {
+    time_t now = time(NULL);
+    dp->last_update_time = now; // ura osvezevanja: ob VSAKEM telegramu naprave, tudi ob enaki vrednosti
+
+    const bool is_response = (tel->apci == KNX_APCI_GROUPVALUE_RESPONSE);
+    if (is_response) dp->read_unanswered = false; // naprava ocitno odgovarja na branja
+
+    const bool is_answer = is_response && dp->read_sent_time &&
+                           (now - dp->read_sent_time) <= READ_ANSWER_WINDOW_SEC;
+    if (is_answer) {
+        g_last_response_time = now; // watchdog: odgovor na NASE vprasanje
+        g_reads_since_response = 0;
+        dp->read_sent_time = 0;
+    }
+
+    uint16_t raw = 0;
+    if (!telegram_raw(dp, tel, &raw)) {
+        printf("[KNX-%s] %s (%s) od %s -> telegram brez uporabnih podatkov ali DPT %s ni podprt\n",
+               is_answer ? "RESP" : "SNIFF", dp->opc_path, dp->knx_address, src, dp->dpt);
+        return;
+    }
+
+    const bool same = dp->has_value && dp->knx_raw_value == raw;
+    dp->knx_raw_value = raw;
+    dp->is_initialized = true;
+    dp->has_value = true;
+
+    publish_to_opcua(server, dp, raw);
+
+    char shown[32], rawtxt[64];
+    format_raw(dp, raw, shown, sizeof(shown));
+    format_bytes(tel, rawtxt, sizeof(rawtxt));
+    const char *state = same ? "nespremenjeno" : "spremenjeno";
+
+    if (is_answer) {
+        printf("[KNX-RESP] %s (%s) od %s -> %s (surovo: %s) [%s]\n",
+               dp->opc_path, dp->knx_address, src, shown, rawtxt, state);
+    } else {
+        printf("[KNX-SNIFF] %s (%s) od %s -> %s (surovo: %s) [%s%s]\n",
+               dp->opc_path, dp->knx_address, src, shown, rawtxt, state,
+               is_response ? ", odgovor drugemu" : "");
+    }
+}
+
+// Called from main's select() loop when knxd's fd has data. EIBGetGroup_Src
+// (inside knx_eibd_recv) blocks only for the message already in flight - safe to
+// call exactly once per select() wake-up.
+// Returns 0 if handled (or a frame we don't track), -1 on real connection
+// failure - caller should reconnect.
 int handle_knx_traffic(int knx_fd, UA_Server *server) {
-    char line[512];
-    if (fgets(line, sizeof(line), knx_monitor_stream) == NULL) return -1; 
+    (void)knx_fd; // kept for API compatibility with main.c's select() usage
 
-    char *to_ptr = strstr(line, " to ");
-    if (!to_ptr) return 0;
+    KnxTelegram tel;
+    int rc = knx_eibd_recv(&tel);
+    if (rc == -3) return -1;  // real connection failure - reconnect
+    if (rc != 0) return 0;    // received something, but not a GroupValue telegram
 
-    char *addr_start = to_ptr + 4; 
-    char *colon_ptr = strchr(addr_start, ':');
-    if (!colon_ptr) return 0;
+    time_t now = time(NULL);
+    g_last_rx_time = now; // vodilo zivi (tudi ce nihce ne odgovarja na nasa vprasanja)
 
-    char extracted_addr[64];
-    size_t addr_len = colon_ptr - addr_start;
-    if (addr_len >= sizeof(extracted_addr)) return 0;
-    
-    strncpy(extracted_addr, addr_start, addr_len);
-    extracted_addr[addr_len] = '\0';
+    char ga_str[16], src[16];
+    knx_format_group_address(tel.dst_addr, ga_str, sizeof(ga_str));
+    src_to_str(tel.src_addr, src, sizeof(src));
 
-    char *trimmed_addr = strtok(extracted_addr, " \t\r\n");
-    if (!trimmed_addr) return 0;
-    char *val_ptr = colon_ptr + 1; 
+    // 1) Vprasanje (Read). Nase vprasanje knxd odmeva tudi na nasi sprejemni povezavi:
+    //    Read na naslovu, kamor smo ravnokar poslali vprasanje, je odmev nas; vse ostalo je tuje.
+    if (tel.apci == KNX_APCI_GROUPVALUE_READ) {
+        bool ours = false;
+        const DataPoint *first = NULL;
+        for (size_t i = 0; i < global_config.dp_count; i++) {
+            const DataPoint *dp = &global_config.datapoints[i];
+            if (strcmp(dp->knx_address, ga_str) != 0) continue;
+            if (!first) first = dp;
+            if (dp->read_sent_time && (now - dp->read_sent_time) <= READ_ECHO_WINDOW_SEC) ours = true;
+        }
+        if (LOG_EXT_QUERIES && !ours) {
+            if (first) printf("[EXT-QRY] %s (%s) od %s\n", first->opc_path, ga_str, src);
+            else       printf("[EXT-QRY] (%s) od %s - ni v config.json\n", ga_str, src);
+        }
+        return 0;
+    }
 
+    if (tel.apci != KNX_APCI_GROUPVALUE_WRITE && tel.apci != KNX_APCI_GROUPVALUE_RESPONSE) return 0;
+
+    // 2) Telegram z vrednostjo. Isti naslov je lahko v config.json vec krat - posodobimo vse.
+    bool matched = false;
     for (size_t i = 0; i < global_config.dp_count; i++) {
         DataPoint *dp = &global_config.datapoints[i];
-        if (strcmp(dp->knx_address, trimmed_addr) == 0) {
-            UA_NodeId node = UA_NODEID_STRING(1, dp->opc_path);
-            dp->last_update_time = time(NULL);
+        if (strcmp(dp->knx_address, ga_str) != 0) continue;
+        matched = true;
+        handle_dp_value(server, dp, &tel, src);
+    }
 
-            if (strncmp(dp->dpt, "1.", 2) == 0) {
-                int raw_val = 0;
-                if (sscanf(val_ptr, "%x", &raw_val) == 1 || sscanf(val_ptr, "%d", &raw_val) == 1) {
-                    uint16_t actual_raw = (raw_val & 0x01);
-                    if (dp->is_initialized && dp->knx_raw_value == actual_raw) break; // Echo suppression
-
-                    dp->knx_raw_value = actual_raw;
-                    dp->value.b_val = (bool)actual_raw;
-                    dp->is_initialized = true;
-
-                    UA_DataValue dv; UA_DataValue_init(&dv);
-                    UA_Variant_setScalar(&dv.value, &dp->value.b_val, &UA_TYPES[UA_TYPES_BOOLEAN]);
-                    dv.hasValue = true; dv.status = UA_STATUSCODE_GOOD; dv.hasStatus = true;
-                    UA_Server_writeDataValue(server, node, dv);
-                }
+    // 3) Naprava ni v config.json: samo izpis surovih vrednosti, v OPC UA se ne zapisuje.
+    if (!matched) {
+        if (tel.data_len == 0) {
+            printf("[KNX-DEBUG] Neznan naslov %s (apci=%d, kratka vrednost=%u) - ni v config.json\n",
+                   ga_str, (int)tel.apci, tel.short_value);
+        } else {
+            char hex_str[3 * sizeof(tel.data) + 1] = {0};
+            size_t hex_off = 0;
+            for (uint8_t b = 0; b < tel.data_len && hex_off + 3 < sizeof(hex_str); b++) {
+                hex_off += (size_t)snprintf(&hex_str[hex_off], sizeof(hex_str) - hex_off, "%02X ", tel.data[b]);
             }
-            else if (strncmp(dp->dpt, "5.", 2) == 0) {
-                int raw_val = 0;
-                if (sscanf(val_ptr, "%x", &raw_val) == 1 || sscanf(val_ptr, "%d", &raw_val) == 1) {
-                    uint16_t actual_raw = (uint16_t)(raw_val & 0xFF);
-                    if (dp->is_initialized && dp->knx_raw_value == actual_raw) break; // Echo suppression
-
-                    dp->knx_raw_value = actual_raw;
-                    dp->is_initialized = true;
-
-                    UA_Float percent_display = ((float)actual_raw * 100.0f) / 255.0f;
-                    UA_DataValue dv; UA_DataValue_init(&dv);
-                    UA_Variant_setScalar(&dv.value, &percent_display, &UA_TYPES[UA_TYPES_FLOAT]);
-                    dv.hasValue = true; dv.status = UA_STATUSCODE_GOOD; dv.hasStatus = true;
-                    UA_Server_writeDataValue(server, node, dv);
-                }
-            }
-            else if (strncmp(dp->dpt, "9.", 2) == 0) {
-                unsigned int b1 = 0, b2 = 0;
-                if (sscanf(val_ptr, "%x %x", &b1, &b2) == 2) {
-                    uint16_t actual_raw = (uint16_t)(((b1 & 0xFF) << 8) | (b2 & 0xFF));
-                    
-                    // 100% zanesljiva celoštevilska primerjava bajtov - odmev takoj zavržemo!
-                    if (dp->is_initialized && dp->knx_raw_value == actual_raw) break;
-
-                    dp->knx_raw_value = actual_raw;
-                    dp->is_initialized = true;
-
-                    int sign = (b1 & 0x80) >> 7;
-                    int exponent = (b1 & 0x78) >> 3;
-                    int mantissa = ((b1 & 0x07) << 8) | b2;
-                    if (sign) mantissa = mantissa - 2048;
-                    dp->value.f_val = 0.01f * mantissa * (1 << exponent);
-
-                    UA_DataValue dv; UA_DataValue_init(&dv);
-                    UA_Variant_setScalar(&dv.value, &dp->value.f_val, &UA_TYPES[UA_TYPES_FLOAT]);
-                    dv.hasValue = true; dv.status = UA_STATUSCODE_GOOD; dv.hasStatus = true;
-                    UA_Server_writeDataValue(server, node, dv);
-                    printf("[KNX-REALNO] Posodobljena temperatura %s -> %.2f °C\n", dp->opc_path, dp->value.f_val);
-                }
-            }
-            break; 
+            printf("[KNX-DEBUG] Neznan naslov %s (apci=%d, podatki=%s) - ni v config.json\n",
+                   ga_str, (int)tel.apci, hex_str);
         }
     }
     return 0;
 }
-

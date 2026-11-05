@@ -1,13 +1,8 @@
 {
-  "security": {
-    "allow_anonymous": true,
-    "require_encryption": false,
-    "users": [
-      {
-        "username": "admin",
-        "password": "VarnoGeslo2026!"
-      }
-    ]
+  "allow_anonymous": true,
+  "require_encryption": false,
+  "knx_connection": {
+     "eibd_url": "local:/run/knx"
   },
   "datapoints": [
     {
@@ -2410,6 +2405,11 @@
       "dpt": "1.001",
       "opc_path": "Nad1.Pisarna1.LucVklop"
     },
+    {
+      "knx_address": "7/4/1",
+      "dpt": "5.001",
+      "opc_path": "Nad1.Pisarna1.Osvetlitev"
+    },    
     {
       "knx_address": "7/4/11",
       "dpt": "1.001",

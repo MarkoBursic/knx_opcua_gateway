@@ -1,0 +1,20 @@
+[Unit]
+Description=KNX <-> OPC UA gateway
+After=network-online.target knxd.socket
+Wants=network-online.target knxd.socket
+# Nikoli ne obupaj nad ponovnimi zagoni (npr. dolg izpad rutera)
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=user
+# config.json se prebere iz delovnega direktorija
+WorkingDirectory=/opt/knx_opcua_gateway
+ExecStart=/opt/knx_opcua_gateway/knx_opcua_gateway
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
