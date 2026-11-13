@@ -21,7 +21,7 @@ int g_knx_fd = -1;
 
 // Watchdog (section 3b of the KNX thread loop): warn when we keep sending
 // reads but nothing answers for a long time - typical of a hung router.
-#define WATCHDOG_MIN_READS    30   // at least this many of our reads without any answer...
+#define WATCHDOG_MIN_READS    10   // at least this many unanswered questions to devices that normally answer...
 #define WATCHDOG_SILENCE_SEC 300   // ...and at least this long since the last answer
 #define WATCHDOG_REPEAT_SEC  600   // repeat the warning no more often than this
 
@@ -31,7 +31,7 @@ int g_knx_fd = -1;
 #define SMART_POLL_INTERVAL_MS  2000   // smart-poll: razmak med branji (prej 200 ms)
 #define SMART_POLL_STALE_SEC    1800   // naprave, ki molcijo toliko casa, se osvezijo (30 min)
 #define RETRY_UNANSWERED_SEC    7200   // naprave, ki po 3 poskusih niso odgovorile: ponovno cez 2 uri
-#define POLL_ANSWER_TIMEOUT_SEC READ_ANSWER_WINDOW_SEC // po toliko s javimo, da KNX-POLL ni dobil odgovora
+#define POLL_ANSWER_TIMEOUT_SEC READ_ANSWER_WINDOW_SEC // po toliko s javimo, da KNX-POL ni dobil odgovora
 
 // Popoln ponovni pregled po ponovni povezavi samo, ce je izpad trajal vsaj
 // toliko sekund. Pri nestabilni povezavi (ki pada vsakih nekaj sekund) bi
@@ -66,6 +66,7 @@ static void reset_scan_state(time_t t) {
     }
     g_last_response_time = t;
     g_reads_since_response = 0;
+    g_any_answer_seen = false;
 }
 
 void* knx_thread_func(void *arg) {
@@ -173,7 +174,7 @@ void* knx_thread_func(void *arg) {
                         any_left_in_queue = true;
 
                         if (dp->last_read_sent < 3) {
-                            printf("[KNX-INIT] %s (%s) - vprašanje %u/3\n",
+                            printf("[KNX-INI] %s (%s) - vprašanje %u/3\n",
                                    dp->opc_path, dp->knx_address, dp->last_read_sent + 1);
 
                             send_knx_read_request(dp);
@@ -183,7 +184,7 @@ void* knx_thread_func(void *arg) {
                             dp->last_update_time = now;
                             command_sent = true;
                         } else {
-                            printf("[KNX-INIT] Brez odgovora po 3 vprašanjih: %s (%s) - ponovno čez %d min\n",
+                            printf("[KNX-INI] Brez odgovora po 3 vprašanjih: %s (%s) - ponovno čez %d min\n",
                                    dp->opc_path, dp->knx_address, RETRY_UNANSWERED_SEC / 60);
                             dp->is_initialized = true;
                             dp->read_unanswered = true;
@@ -196,7 +197,7 @@ void* knx_thread_func(void *arg) {
                 }
 
                 if (!any_left_in_queue) {
-                    printf("[KNX-INIT] Začetni pregled končan - prehod v normalno obratovanje.\n");
+                    printf("[KNX-INI] Začetni pregled končan - prehod v normalno obratovanje.\n");
                     queue_completely_finished = true;
                     gettimeofday(&last_smart_poll_tick, NULL);
                 }
@@ -225,7 +226,7 @@ void* knx_thread_func(void *arg) {
 
                     long stale_limit = dp->read_unanswered ? RETRY_UNANSWERED_SEC : SMART_POLL_STALE_SEC;
                     if (dp->is_initialized && (now - dp->last_update_time >= stale_limit)) {
-                        printf("[KNX-POLL] %s (%s) - brez telegrama že %ld s\n",
+                        printf("[KNX-POL] %s (%s) - brez telegrama že %ld s\n",
                                dp->opc_path, dp->knx_address, (long)(now - dp->last_update_time));
                         send_knx_read_request(dp);
                         dp->read_sent_time = now;   // čakamo na odgovor na NAŠE vprašanje (glej 3c)
@@ -237,7 +238,8 @@ void* knx_thread_func(void *arg) {
             }
         }
 
-        // 3b. WATCHDOG: pošiljamo branja, odgovora pa že dolgo ni od nikogar.
+        // 3b. WATCHDOG: naša vprašanja ostajajo brez odgovora tudi pri napravah, ki so že odgovarjale.
+        //     Odklopljene naprave (nikoli niso odgovorile) se ne štejejo - glej watchdog_note_unanswered_read().
         //     Samo opozorilo (ponovna povezava ne popravi zataknjenega rutera).
         if (knx_connected &&
             g_reads_since_response >= WATCHDOG_MIN_READS &&
@@ -247,25 +249,27 @@ void* knx_thread_func(void *arg) {
             char rxbuf[40];
             if (g_last_rx_time) snprintf(rxbuf, sizeof(rxbuf), "pred %ld s", (long)(now - g_last_rx_time));
             else snprintf(rxbuf, sizeof(rxbuf), "se ni bilo");
-            printf("[WATCHDOG] %u branj je ostalo brez odgovora, zadnji odgovor pred %ld s; "
-                   "zadnji telegram z vodila: %s. "
-                   "Telegrami prihajajo, odgovori na branja pa ne: ruter ali vodilo morda ne odgovarja "
-                   "(preveri n146, po potrebi ga ponovno zazeni).\n",
-                   g_reads_since_response, (long)(now - g_last_response_time), rxbuf);
+            printf("[WATCHDOG] %u zaporednih vprašanj je ostalo brez odgovora (štejejo samo naprave, %s); "
+                   "zadnji odgovor pred %ld s, zadnji telegram z vodila: %s. "
+                   "Ruter ali vodilo morda ne odgovarja (preveri n146, po potrebi ga ponovno zaženi).\n",
+                   g_reads_since_response,
+                   g_any_answer_seen ? "ki so že odgovarjale" : "ker od zagona ni odgovorila nobena naprava",
+                   (long)(now - g_last_response_time), rxbuf);
         }
 
         // 3c. Sledljivost vprašanj: naše vprašanje, ki v POLL_ANSWER_TIMEOUT_SEC ni dobilo odgovora.
-        //     (Odgovori so izpisani kot [KNX-RESP] v handle_knx_traffic.)
+        //     (Odgovori so izpisani kot [KNX-RSP] v handle_knx_traffic.)
         if (knx_connected && now != last_poll_check) {
             last_poll_check = now;
             for (size_t i = 0; i < global_config.dp_count; i++) {
                 DataPoint *dp = &global_config.datapoints[i];
                 if (dp->read_sent_time && (now - dp->read_sent_time) >= POLL_ANSWER_TIMEOUT_SEC) {
                     if (dp->read_kind == READ_KIND_POLL) {
-                        printf("[KNX-POLL] Brez odgovora: %s (%s) - naslednji poskus čez %d min\n",
+                        printf("[KNX-POL] Brez odgovora: %s (%s) - naslednji poskus čez %d min\n",
                                dp->opc_path, dp->knx_address,
                                (int)((dp->read_unanswered ? RETRY_UNANSWERED_SEC : SMART_POLL_STALE_SEC) / 60));
                     }
+                    watchdog_note_unanswered_read(dp); // odklopljene naprave watchdoga ne sprožijo
                     dp->read_sent_time = 0; // odgovor ni prišel: poznejši Response ni več odgovor na to vprašanje
                 }
             }
@@ -332,8 +336,12 @@ int main(void) {
     server = UA_Server_new();
     UA_ServerConfig *opc_config = UA_Server_getConfig(server);
 
-    UA_ServerConfig_setDefault(opc_config);
-    init_opcua_server(server, opc_config);
+    // Konfiguracijo (certifikat, endpointi, prijava) v celoti postavi init_opcua_server().
+    if (init_opcua_server(server, opc_config) != 0) {
+        fprintf(stderr, "[ERROR] Nastavitev OPC UA (zascita) ni uspela - zaustavljam.\n");
+        UA_Server_delete(server);
+        return 1;
+    }
 
     pthread_t knx_thread;
     if (pthread_create(&knx_thread, NULL, knx_thread_func, NULL) != 0) {

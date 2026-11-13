@@ -47,7 +47,7 @@ static UA_NodeId get_or_create_folder(UA_Server *server, const UA_NodeId *parent
 
 static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId, void *sessionContext,
                        const UA_NodeId *nodeId, void *nodeContext, const UA_NumericRange *range, const UA_DataValue *data) {
-    if (g_internal_opc_write) return; // zapis iz KNX niti (KNX-RESP/KNX-SNIFF) - nikoli ne vracaj na bus
+    if (g_internal_opc_write) return; // zapis iz KNX niti (KNX-RSP/KNX-SPY) - nikoli ne vracaj na bus
 
     DataPoint *dp = (DataPoint*)nodeContext;
     if (!dp || !data->hasValue) return;
@@ -139,13 +139,15 @@ static void onWriteKNX(UA_Server *server, const UA_NodeId *sessionId, void *sess
     }
 }
 
-void init_opcua_server(UA_Server *server, UA_ServerConfig *config) {
-    if(!server || !config) return;
-    UA_ServerConfig_setBasics(config);
-    UA_Boolean allowAnonymous = true;
-    UA_String securityPolicyNone = UA_STRING("http://opcfoundation.org");
-    UA_AccessControl_default(config, allowAnonymous, &securityPolicyNone, 0, NULL);
+int init_opcua_server(UA_Server *server, UA_ServerConfig *config) {
+    if(!server || !config) return -1;
+
+    // Streznik se v celoti nastavi v configure_opcua_security(): certifikat,
+    // endpointi, zaupani odjemalci in prijava. Brez uspesne nastavitve se ne zazene.
+    if(configure_opcua_security(config) != 0) return -1;
+
     create_opcua_nodes(server);
+    return 0;
 }
 
 void create_opcua_nodes(UA_Server *server) {

@@ -140,10 +140,12 @@ Behaviour worth knowing:
   `main.c`), the gateway re-reads all datapoints. Shorter blips just continue where they left off,
   so a flapping link does not trigger a full scan every few seconds.
 - All socket I/O to `knxd` has a 3 s timeout, so a restarting `knxd` can never freeze the gateway.
-- `[WATCHDOG]` is printed when 30+ reads in a row go unanswered for 5+ minutes
-  (thresholds at the top of `main.c`). It also shows when the last telegram of
-  any kind came from the bus. If telegrams keep arriving but no read is ever
-  answered, the KNX IP router usually needs a restart.
+- `[WATCHDOG]` is printed when 10+ questions in a row stay unanswered for 5+ minutes
+  (thresholds at the top of `main.c`). Only devices that have answered a read before are
+  counted, so disconnected devices that never answer cannot trigger it; until any device
+  has answered since startup, every question counts (catches a router that is dead from the
+  start). It also shows when the last telegram of any kind came from the bus. If telegrams
+  keep arriving but no read is answered, the KNX IP router usually needs a restart.
 - Load on the bus is tunable at the top of `main.c`: the startup queue reads one
   datapoint every 500 ms, smart-poll every 2 s, and a silent datapoint is only
   re-read after 30 minutes. Datapoints that never answered during the startup
@@ -154,15 +156,63 @@ Every question the gateway sends is logged, and every answer is tied back to it:
 
 | Prefix | Meaning |
 |---|---|
-| `[KNX-INIT]` | our question at startup / after a long outage (`n/3` attempts) |
-| `[KNX-POLL]` | our question to a device that sent nothing for 30 min (2 h if it never answered) |
-| `[KNX-RESP]` | answer to OUR question (matched by group address within 10 s): decoded value, raw bytes, `[spremenjeno]` / `[nespremenjeno]` |
-| `[KNX-SNIFF]` | telegram from a device in `config.json` that we did not ask for (it sent a value itself, or answered someone else's question) |
+| `[KNX-INI]` | our question at startup / after a long outage (`n/3` attempts) |
+| `[KNX-POL]` | our question to a device that sent nothing for 30 min (2 h if it never answered) |
+| `[KNX-RSP]` | answer to OUR question (matched by group address within 10 s): decoded value, raw bytes, `[spremenjeno]` / `[nespremenjeno]` |
+| `[KNX-SPY]` | telegram from a device in `config.json` that we did not ask for (it sent a value itself, or answered someone else's question) |
 | `[EXT-QRY]` | a question sent by ANOTHER device on the bus (e.g. SCADA); set `LOG_EXT_QUERIES` to 0 in `knx_handler.c` to silence it |
-| `[KNX-DEBUG]` | telegram for a group address that is not in `config.json`: raw values only, never written to OPC UA |
+| `[KNX-DBG]` | telegram for a group address that is not in `config.json`: raw values only, never written to OPC UA |
+| `[KNX-SND]` | our write to the KNX bus (an OPC UA client changed a value) |
 
-For `KNX-RESP` and `KNX-SNIFF` the OPC UA node gets the value and a fresh source timestamp even
+For `KNX-RSP` and `KNX-SPY` the OPC UA node gets the value and a fresh source timestamp even
 when the value is unchanged, and the refresh timer of that datapoint is reset.
-If no telegram arrives for the poll interval, a `KNX-POLL` question is sent and the normal
-outcome is a `KNX-RESP` line right after it (or `[KNX-POLL] Brez odgovora` after 10 s).
+If no telegram arrives for the poll interval, a `KNX-POL` question is sent and the normal
+outcome is a `KNX-RSP` line right after it (or `[KNX-POL] Brez odgovora` after 10 s).
 - `SIGTERM`/`SIGINT` stop the gateway cleanly; `SIGPIPE` is ignored.
+
+## OPC UA security
+
+Design (agreed with the operator): every client logs in with a user name and password (stored as a
+hash in `config.json`), the channel is encrypted, encrypted clients must be listed in a trust folder
+(strict), all logged-in users may read and write, and an old SCADA can be let in through an optional
+unencrypted endpoint.
+
+Build requirements: open62541 built with encryption (`UA_ENABLE_ENCRYPTION`, mbedTLS or OpenSSL) and
+`libcrypt-dev` (the Makefile links `-lcrypt`). `opc_security.c` follows the open62541 1.4 API.
+
+Setup (once):
+
+1. Server certificate and key (DER), plus the trust folder:
+   ```
+   tools/make_pki.sh <hostname> <ip-of-this-pc>
+   ```
+   The certificate's application URI (`urn:knx-opcua-gateway` by default) must equal `pki.application_uri`
+   in `config.json`.
+2. A password hash per user (prompts for the password, so it stays out of the shell history):
+   ```
+   openssl passwd -6
+   ```
+3. Add the keys from `config.security.example.json` to the top level of your `config.json`
+   (`allow_anonymous`, `require_encryption`, `users`, `pki`).
+4. Trust each client certificate before its first connection (strict mode rejects unknown ones):
+   ```
+   tools/trust_client.sh <client-certificate.der|pem>
+   ```
+   The script prints subject and SHA-256 fingerprint - compare them with the client before keeping the
+   file. UaExpert keeps its certificate in its own PKI folder (Settings > Manage Certificates).
+5. `make clean && make`, restart the gateway. The server reads certificates only at startup.
+
+Behaviour worth knowing:
+- **Fails closed.** The gateway refuses to start if there is no user and anonymous access is off, if a
+  `password_hash` is not a crypt(3) hash (plain text is rejected), if the certificate or key is missing,
+  or if the trust folder has no `.der` file (open62541 would otherwise accept every client certificate).
+- **Weak policies are removed:** Basic128Rsa15 and Basic256 (SHA-1) endpoints are dropped.
+- **Lockout:** 5 wrong passwords in a row lock that user for 60 s (constants in `opc_security.c`).
+  Logins are logged as `[SECURITY]` lines; passwords are never logged.
+- **Old SCADA:** set `"require_encryption": false` to keep an additional endpoint without encryption.
+  A user name and password are still required, and the password is encrypted with the server certificate
+  inside the login token. Whether the SCADA's OPC UA client supports that is not known - test it. Restrict
+  port 4840 with a firewall (for example `sudo ufw allow from 10.80.32.0/24 to any port 4840 proto tcp`),
+  because the unencrypted endpoint shares the port with the encrypted ones.
+- **Service:** when running under systemd, put `pki/` next to `config.json` in the working directory.
+- `config.json` and `pki/server_key.der` must be readable only by the service user (`chmod 600`).

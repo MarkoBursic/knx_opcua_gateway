@@ -67,8 +67,42 @@ int load_config(const char *filename) {
         }
     }
 
-    global_config.user_count = 0;
     global_config.dp_count = 0;
+
+    // OPC UA zascita: uporabniki (geslo = crypt(3) hash) in poti do PKI
+    global_config.user_count = 0;
+    memset(global_config.users, 0, sizeof(global_config.users));
+    snprintf(global_config.pki_certificate, sizeof(global_config.pki_certificate), "pki/server_cert.der");
+    snprintf(global_config.pki_private_key, sizeof(global_config.pki_private_key), "pki/server_key.der");
+    snprintf(global_config.pki_trusted_dir, sizeof(global_config.pki_trusted_dir), "pki/trusted");
+    snprintf(global_config.pki_application_uri, sizeof(global_config.pki_application_uri), "urn:knx-opcua-gateway");
+
+    struct json_object *users_obj, *pki_obj;
+    if (json_object_object_get_ex(parsed_json, "users", &users_obj) &&
+        json_object_is_type(users_obj, json_type_array)) {
+        size_t n_users = json_object_array_length(users_obj);
+        for (size_t i = 0; i < n_users && global_config.user_count < MAX_USERS; i++) {
+            struct json_object *uobj = json_object_array_get_idx(users_obj, i);
+            struct json_object *uname, *uhash;
+            if (uobj && json_object_object_get_ex(uobj, "username", &uname) &&
+                json_object_object_get_ex(uobj, "password_hash", &uhash)) {
+                UserConfig *u = &global_config.users[global_config.user_count++];
+                strncpy(u->username, json_object_get_string(uname), sizeof(u->username) - 1);
+                strncpy(u->password_hash, json_object_get_string(uhash), sizeof(u->password_hash) - 1);
+            }
+        }
+    }
+    if (json_object_object_get_ex(parsed_json, "pki", &pki_obj)) {
+        struct json_object *v;
+        if (json_object_object_get_ex(pki_obj, "certificate", &v))
+            snprintf(global_config.pki_certificate, sizeof(global_config.pki_certificate), "%s", json_object_get_string(v));
+        if (json_object_object_get_ex(pki_obj, "private_key", &v))
+            snprintf(global_config.pki_private_key, sizeof(global_config.pki_private_key), "%s", json_object_get_string(v));
+        if (json_object_object_get_ex(pki_obj, "trusted_dir", &v))
+            snprintf(global_config.pki_trusted_dir, sizeof(global_config.pki_trusted_dir), "%s", json_object_get_string(v));
+        if (json_object_object_get_ex(pki_obj, "application_uri", &v))
+            snprintf(global_config.pki_application_uri, sizeof(global_config.pki_application_uri), "%s", json_object_get_string(v));
+    }
 
     // Iskanje polja naprav (datapoints)
     if (json_object_object_get_ex(parsed_json, "datapoints", &datapoints_obj)) {
@@ -100,5 +134,6 @@ int load_config(const char *filename) {
     json_object_put(parsed_json); // Sprostitev JSON spomina
     printf("[CONFIG] Uspešno prebranih %zu realnih naprav iz JSON konfiguracije.\n", global_config.dp_count);
     printf("[CONFIG] Povezava preko knxd: %s\n", global_config.knx_connection.eibd_url);
+    printf("[CONFIG] OPC UA uporabnikov: %zu\n", global_config.user_count);
     return 0;
 }

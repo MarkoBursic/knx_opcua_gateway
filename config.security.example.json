@@ -1,0 +1,13 @@
+{
+  "allow_anonymous": false,
+  "require_encryption": true,
+  "users": [
+    { "username": "scada", "password_hash": "PASTE_OUTPUT_OF_openssl_passwd_-6_HERE" }
+  ],
+  "pki": {
+    "certificate": "pki/server_cert.der",
+    "private_key": "pki/server_key.der",
+    "trusted_dir": "pki/trusted",
+    "application_uri": "urn:knx-opcua-gateway"
+  }
+}

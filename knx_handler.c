@@ -9,11 +9,20 @@
 // Watchdog bookkeeping (KNX thread only) - see main.c, section 3b.
 time_t g_last_response_time = 0;
 unsigned int g_reads_since_response = 0;
+bool g_any_answer_seen = false;
 __thread int g_internal_opc_write = 0;
 
 // 1 = izpisuj tuja vprasanja (EXT-QRY), 0 = ne
 #define LOG_EXT_QUERIES 1
 time_t g_last_rx_time = 0;
+
+// Watchdog: stejemo samo vprasanja, na katera BI morala priti odgovor. Naprave, ki se nikoli niso
+// javile (odklopljene, brez Read zastavice), bi sicer same sprozile alarm. Dokler od zagona
+// (ali zadnjega popolnega pregleda) ni odgovorila nobena naprava, stejemo vsa - tako ujamemo
+// tudi ruter, ki je mrtev ze ob zagonu.
+void watchdog_note_unanswered_read(const DataPoint *dp) {
+    if (dp->answers_reads || !g_any_answer_seen) g_reads_since_response++;
+}
 
 int init_knx_connection(void) {
     const char *url = global_config.knx_connection.eibd_url;
@@ -34,7 +43,6 @@ void send_knx_read_request(DataPoint *dp) {
         printf("[WARN] Napaka pri pošiljanju GroupValueRead za %s (%s)\n", dp->opc_path, dp->knx_address);
         return;
     }
-    g_reads_since_response++;
 }
 
 // Encodes dp's current logical value into raw KNX bytes for the wire,
@@ -46,32 +54,32 @@ void send_knx_write_request(DataPoint *dp) {
     if (strncmp(dp->dpt, "1.", 2) == 0) {
         // 1 bit - switches, alarms, up/down, etc.
         rc = knx_eibd_send_group_write_small(dst, dp->knx_raw_value & 0x01);
-        printf("[KNX-SISTEM] Izveden vklop (DPT1) za %s (%s) -> %d\n", dp->opc_path, dp->knx_address, dp->knx_raw_value & 0x01);
+        printf("[KNX-SND] Izveden vklop (DPT1) za %s (%s) -> %d\n", dp->opc_path, dp->knx_address, dp->knx_raw_value & 0x01);
     }
     else if (strncmp(dp->dpt, "5.", 2) == 0) {
         // 1 byte unsigned - percentage/scaling
         uint8_t b = (uint8_t)(dp->knx_raw_value & 0xFF);
         rc = knx_eibd_send_group_write(dst, &b, 1);
-        printf("[KNX-SISTEM] Izveden zapis (DPT5) za %s -> Surovo: %u\n", dp->opc_path, b);
+        printf("[KNX-SND] Izveden zapis (DPT5) za %s -> Surovo: %u\n", dp->opc_path, b);
     }
     else if (strncmp(dp->dpt, "4.", 2) == 0) {
         // 1 byte character (DPT4.001 ASCII)
         uint8_t b = (uint8_t)(dp->knx_raw_value & 0xFF);
         rc = knx_eibd_send_group_write(dst, &b, 1);
-        printf("[KNX-SISTEM] Izveden zapis (DPT4) za %s -> Znak: 0x%02X\n", dp->opc_path, b);
+        printf("[KNX-SND] Izveden zapis (DPT4) za %s -> Znak: 0x%02X\n", dp->opc_path, b);
     }
     else if (strcmp(dp->dpt, "8") == 0 || strncmp(dp->dpt, "8.", 2) == 0) {
         // 2 byte signed
         uint8_t b[2] = { (uint8_t)((dp->knx_raw_value >> 8) & 0xFF), (uint8_t)(dp->knx_raw_value & 0xFF) };
         rc = knx_eibd_send_group_write(dst, b, 2);
-        printf("[KNX-SISTEM] Izveden zapis (DPT8) za %s -> Surovo: 0x%04X\n", dp->opc_path, dp->knx_raw_value);
+        printf("[KNX-SND] Izveden zapis (DPT8) za %s -> Surovo: 0x%04X\n", dp->opc_path, dp->knx_raw_value);
     }
     else if (strncmp(dp->dpt, "9.", 2) == 0) {
         // 2 byte float16 (DPT9.xxx) - dp->knx_raw_value already holds the
         // encoded 16-bit float form, computed by the OPC UA write callback.
         uint8_t b[2] = { (uint8_t)((dp->knx_raw_value >> 8) & 0xFF), (uint8_t)(dp->knx_raw_value & 0xFF) };
         rc = knx_eibd_send_group_write(dst, b, 2);
-        printf("[KNX-SISTEM] Izveden zapis (DPT9) za %s -> Vrednost: %.2f (Surovo: 0x%04X)\n",
+        printf("[KNX-SND] Izveden zapis (DPT9) za %s -> Vrednost: %.2f (Surovo: 0x%04X)\n",
                dp->opc_path, dp->value.f_val, dp->knx_raw_value);
     }
     else {
@@ -191,27 +199,31 @@ static void publish_to_opcua(UA_Server *server, DataPoint *dp, uint16_t raw) {
 }
 
 // Telegram z vrednostjo (Write ali Response) za datapoint iz config.json.
-//   KNX-RESP  = odgovor na NASE vprasanje (KNX-INIT / KNX-POLL), ujema se po naslovu v oknu READ_ANSWER_WINDOW_SEC
-//   KNX-SNIFF = vse ostalo: naprava je sama poslala vrednost ali pa je odgovorila nekomu drugemu
+//   KNX-RSP  = odgovor na NASE vprasanje (KNX-INI / KNX-POL), ujema se po naslovu v oknu READ_ANSWER_WINDOW_SEC
+//   KNX-SPY = vse ostalo: naprava je sama poslala vrednost ali pa je odgovorila nekomu drugemu
 static void handle_dp_value(UA_Server *server, DataPoint *dp, const KnxTelegram *tel, const char *src) {
     time_t now = time(NULL);
     dp->last_update_time = now; // ura osvezevanja: ob VSAKEM telegramu naprave, tudi ob enaki vrednosti
 
     const bool is_response = (tel->apci == KNX_APCI_GROUPVALUE_RESPONSE);
-    if (is_response) dp->read_unanswered = false; // naprava ocitno odgovarja na branja
+    if (is_response) {
+        dp->read_unanswered = false; // naprava ocitno odgovarja na branja
+        dp->answers_reads = true;
+    }
 
     const bool is_answer = is_response && dp->read_sent_time &&
                            (now - dp->read_sent_time) <= READ_ANSWER_WINDOW_SEC;
     if (is_answer) {
         g_last_response_time = now; // watchdog: odgovor na NASE vprasanje
         g_reads_since_response = 0;
+        g_any_answer_seen = true;
         dp->read_sent_time = 0;
     }
 
     uint16_t raw = 0;
     if (!telegram_raw(dp, tel, &raw)) {
         printf("[KNX-%s] %s (%s) od %s -> telegram brez uporabnih podatkov ali DPT %s ni podprt\n",
-               is_answer ? "RESP" : "SNIFF", dp->opc_path, dp->knx_address, src, dp->dpt);
+               is_answer ? "RSP" : "SPY", dp->opc_path, dp->knx_address, src, dp->dpt);
         return;
     }
 
@@ -228,10 +240,10 @@ static void handle_dp_value(UA_Server *server, DataPoint *dp, const KnxTelegram 
     const char *state = same ? "nespremenjeno" : "spremenjeno";
 
     if (is_answer) {
-        printf("[KNX-RESP] %s (%s) od %s -> %s (surovo: %s) [%s]\n",
+        printf("[KNX-RSP] %s (%s) od %s -> %s (surovo: %s) [%s]\n",
                dp->opc_path, dp->knx_address, src, shown, rawtxt, state);
     } else {
-        printf("[KNX-SNIFF] %s (%s) od %s -> %s (surovo: %s) [%s%s]\n",
+        printf("[KNX-SPY] %s (%s) od %s -> %s (surovo: %s) [%s%s]\n",
                dp->opc_path, dp->knx_address, src, shown, rawtxt, state,
                is_response ? ", odgovor drugemu" : "");
     }
@@ -289,7 +301,7 @@ int handle_knx_traffic(int knx_fd, UA_Server *server) {
     // 3) Naprava ni v config.json: samo izpis surovih vrednosti, v OPC UA se ne zapisuje.
     if (!matched) {
         if (tel.data_len == 0) {
-            printf("[KNX-DEBUG] Neznan naslov %s (apci=%d, kratka vrednost=%u) - ni v config.json\n",
+            printf("[KNX-DBG] Neznan naslov %s (apci=%d, kratka vrednost=%u) - ni v config.json\n",
                    ga_str, (int)tel.apci, tel.short_value);
         } else {
             char hex_str[3 * sizeof(tel.data) + 1] = {0};
@@ -297,7 +309,7 @@ int handle_knx_traffic(int knx_fd, UA_Server *server) {
             for (uint8_t b = 0; b < tel.data_len && hex_off + 3 < sizeof(hex_str); b++) {
                 hex_off += (size_t)snprintf(&hex_str[hex_off], sizeof(hex_str) - hex_off, "%02X ", tel.data[b]);
             }
-            printf("[KNX-DEBUG] Neznan naslov %s (apci=%d, podatki=%s) - ni v config.json\n",
+            printf("[KNX-DBG] Neznan naslov %s (apci=%d, podatki=%s) - ni v config.json\n",
                    ga_str, (int)tel.apci, hex_str);
         }
     }
