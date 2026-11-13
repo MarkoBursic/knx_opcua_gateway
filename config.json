@@ -3,16 +3,14 @@
   "require_encryption": true,
   "users": [
     { "username": "scada", "password_hash": "$6$biNFo9ByFAlW4Q0C$M0eDMIeroXUx3KpmyVxl69hPXRVQC2CByurNTqFG/e8HNG4cwGjJD.tG4AvWOFMu2uwdrXmn9/mz1e/c6B6Iw."
- }
+    }
   ],
   "pki": {
     "certificate": "pki/server_cert.der",
     "private_key": "pki/server_key.der",
     "trusted_dir": "pki/trusted",
     "application_uri": "urn:knx-opcua-gateway"
-  }
-}
-
+  },
   "knx_connection": {
      "eibd_url": "local:/run/knx"
   },
