@@ -1,3 +1,5 @@
 *.o
 *.tar.gz
 *.zip
+*.der
+*.pem
